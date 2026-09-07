@@ -28,6 +28,14 @@ COPE 将上述思想扩展到跨模型生成：**同一教师表示的不同前�
 
 本项目将 **Composable** 操作性定义为：教师侧编码不依赖学生身份或所选宽度，同一 latent 可截取后与不同学生读取器组合使用。冻结协议后接入新学生是更强的扩展证据，不是首轮验证的前提。`[opinion]`
 
+## 方法与分析的贡献重心
+
+当前建议按 **Method 约 40%、分析与实证约 60%** 组织研究；这是预期贡献重心的主观判断，不是已验证结论、论文篇幅配额或必须保持的比例。`[opinion]`
+
+方法贡献集中于共享 projector、有序前缀及“学生 × 宽度”联合训练。分析贡献需回答共享排序的代价、信息容量与学生可读性的区别，以及目标质量下的学生与预算选择；普通准确率表和超参数扫描主要验证方法，不能自动视为独立的分析贡献。`[opinion]`
+
+质量曲线饱和时，结合教师信号、读取器容量与学生专用接口对照再归因，不能仅由曲线变平就断言学生能力不足。先验证这些问题；若发现稳定的共享冲突，再设计针对性机制，无需为了增加方法占比预先堆叠模块与损失。`[opinion]`
+
 ## 最小接口与训练约束
 
 建议以以下接口组织实现；序列汇聚与接入位置属于待比较的设计选择。`[opinion]`
@@ -83,6 +91,42 @@ COPE 将上述思想扩展到跨模型生成：**同一教师表示的不同前�
 | [ReGuLaR](https://arxiv.org/abs/2601.23184) | 用 rendered CoT 的视觉语义表征正则化变分 latent reasoning。`[verified: Abstract]` | 关注教师到多个学生的可伸缩通信接口及复用代价。`[opinion]` |
 
 核心技术问题是：**对不同学生都有用的信息，能否被排进同一套前缀顺序？** 对照学生专用 MRL projector 可以检验共享排序的代价，对照共享但只训练满宽的 projector 可以检验前缀监督的价值；二者共同构成核心证据。`[opinion]`
+
+## 参考论文的实验数据集
+
+下表按原文区分训练、主要评测和扩展实验。数据集名称相同不代表训练划分、提示格式或评分方式相同，复现时需固定具体版本与样本划分。`[opinion]`
+
+| 论文 | 训练 / 适配数据 | 主要评测与扩展实验 |
+|---|---|---|
+| [MRL](https://arxiv.org/html/2205.13147v4) | ImageNet-1K、JFT-300M、ALIGN 图文数据；BERT 实验使用 English Wikipedia、BooksCorpus。 | 分类与检索：ImageNet-1K、ImageNet-4K；鲁棒性：ImageNetV2、ImageNet-A、ImageNet-R、ImageNet-Sketch、ObjectNet；长尾：FLUID；另有 BERT masked language modeling 实验。`[verified: §4.1，附录 B/C/G]` |
+| [LLM-to-SLM](https://arxiv.org/html/2402.16844v2) | 翻译使用 WMT 数据与教师生成标签；摘要使用 CNN/Daily Mail；指令微调使用 Alpaca。 | 翻译：WMT14 英→德、英→法，WMT16 英→罗马尼亚语；摘要：CNN/Daily Mail；指令跟随：MT-Bench。`[verified: §4.1–4.3]` |
+| [Latent-Guided Reasoning](https://proceedings.iclr.cc/paper_files/paper/2026/file/6958e9d0f5a76d54ff97da8c45f4d52e-Paper-Conference.pdf) | GSM8K 与论文划分的 BBH 训练部分。 | 域内：GSM8K、BBH；域外：AGIEval、ARC-E、ARC-C、Odyssey-Math、SVAMP、AQuA；额外使用 ELI5-Test 评估长问答与解释质量。`[verified: 正式版 §4.1、表2、附录 D]` |
+| [C2C](https://arxiv.org/html/2510.03215v2) | 主实验：OpenHermes-2.5 前 50 万条；规模和模型组合实验：MMLU auxiliary_train；长上下文实验：LongBench-E 的训练划分。 | 主表：OpenBookQA、MMLU-Redux、ARC-C、C-Eval；长上下文：LongBench-E；补充 agent 协作实验：GSM8K。`[verified: §4.1–4.3，附录 A.3.5、A.5.3]` |
+| [OverFill](https://arxiv.org/html/2508.08446) | 主实验：Infinity-Instruct，经英文过滤；剪枝比例扫描：OpenHermes-2.5。 | GSM8K-CoT、ARC-C、MMLU、MATH、WMT16 德→英、IFEval、Natural Questions；另用 ZeroEval 设置的 MMLU-Redux、CRUXEval 测较长推理输出。不同模型规模的表格覆盖范围不同。`[verified: §4.1–4.3，表2–4，附录表6]` |
+| [ReGuLaR](https://arxiv.org/html/2601.23184) | 主实验：GSM8K-Aug；极端压缩另使用 GSM8K-Aug-NL、AQUA-RAT、MATH；多模态扩展使用 MolReasoner 的分子描述数据。 | 主表：GSM8K-Aug、GSM-Hard、SVAMP、MultiArith；极端压缩：GSM8K-Aug-NL、AQUA-RAT、MATH；多模态：MolReasoner molecule captioning。`[verified: §4.1、§4.3、§5，附录 A.1]` |
+| [MentorPulse](https://arxiv.org/html/2608.20927) | 自建混合训练集 fuse_v3：开放指令来源、代码指令、可验证约束指令和文档生成任务，经教师离线生成与过滤，混合长输出和短答案。 | 13 个主评测集：MMLU-Pro、GPQA Diamond、AGIEval-MCQ、MATH-500、OlympiadBench、LiveCodeBench、IFEval、WritingBench、LongBench v2、QuALITY、GovReport、MultiNews、LongBench-Write。`[verified: 附录 A.1 表3、D.1]` |
+
+### 数据划分与口径注意事项
+
+- **Latent-Guided Reasoning：** 8 个推理基准由 2 个域内和 6 个域外基准组成，ARC-E 与 ARC-C 分开计数；ELI5-Test 是额外评测。BBH 按论文划分使用，不能默认整套 BBH 都是未见测试数据。`[verified: 正式版 §4.1、表2、附录 D]`
+- **C2C：** 长上下文主文称 LongBenchV1，附录明确使用 LongBench-E 的 13 个子数据集，并按数据索引随机划分 3/4 训练、1/4 评估；该结果不能当作完全未见长上下文任务的零样本评测。规模实验另用 15,000 条 MMLU auxiliary_train 样本训练。`[verified: §4.3，附录 A.3.4–A.3.5]`
+- **MentorPulse：** 独立诊断集为 Multi-IF、QMSum、HelloBench、BigCodeBench、ARC-C，用于区分指导过期与能力限制，不计入 13 个主评测集。主评测中的 QuALITY 使用 dev split；LiveCodeBench 使用 2025 年 7 月之后发布的题目。`[verified: §3.1，附录 A.1 表3]`
+- **ReGuLaR：** GSM8K-Aug 去掉推理链中的自然语言描述、保留数学表达式；GSM8K-Aug-NL 保留自然语言解释，两者均由 GSM8K 扩增得到，不能直接当作相同的原始 GSM8K 配方。`[verified: 附录 A.1]`
+- **跨论文对比：** MMLU、MMLU-Redux、MMLU-Pro，MATH、MATH-500，以及 LongBench-E、LongBench v2 分别保留名称；不能将不同版本或不同提示协议的分数放在同一列直接比较。`[opinion]`
+
+## COPE 的建议评测组合
+
+以下为候选评测集合，不代表已经下载数据、确定训练配比或运行实验。优先覆盖数学推理、通用问答和长输出，再按已有结果决定是否扩展。`[opinion]`
+
+| 要验证的问题 | 建议优先数据集 | 分析重点 |
+|---|---|---|
+| 短前缀是否保留有效推理信息 | GSM8K、SVAMP、AQuA；再加入 MATH-500 增加难度。 | 按学生和宽度报告答案质量，比较专用接口与共享接口。`[opinion]` |
+| 共享接口能否跨任务、跨学生复用 | BBH、ARC-C、MMLU-Redux。 | 显式留出任务或样本；区分域内结果与未见任务泛化。`[opinion]` |
+| 一次 Prefill 的指导是否随输出变长而失效 | IFEval，加一个长文任务，例如 GovReport。 | 同时报质量、约束满足情况和实际输出长度，检查不同长度区间的指导收益。`[opinion]` |
+
+候选评测集的 test/dev 部分不用于训练或选择超参数；若使用某数据集的训练部分，记录划分并将对应评测标为域内。训练数据与评测数据应独立登记，不能把上表直接当成混合训练清单。`[opinion]`
+
+MRL 主要提供前缀曲线、独立宽度对照、未训练宽度与任务分组分析的实验范式；其视觉数据集无需直接迁移到 COPE。准确率、输出 token 数和端到端成本分开报告，避免把前缀压缩比当作整体加速比。`[opinion]`
 
 ## 结果表述边界
 
