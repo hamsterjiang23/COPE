@@ -22,9 +22,9 @@ COPE 将上述思想扩展到跨模型生成：**同一教师表示的不同前�
 
 | 研究维度 | COPE 要验证的命题 |
 |---|---|
-| 有序前缀 | 多宽度生成监督能让短前缀独立提供有效指导，较长前缀进一步补充任务信息。`[opinion]` |
-| 跨学生复用 | 教师侧同一套表示与坐标顺序能服务多个学生，并接近各学生专用接口的质量。`[opinion]` |
-| 能力与预算匹配 | 不同学生的质量—宽度—成本曲线可以支持实际部署选择，揭示何时增加宽度有效、何时受学生能力限制。`[opinion]` |
+| 有序前缀生成接口 | 将 MRL 的多前缀监督用于学生自回归生成，使每档 latent 宽度都接受下游任务约束；验证短前缀可用、长前缀能补充有效信息。`[opinion]` |
+| 跨学生共享信息排序 | 在“学生 × 宽度”上联合训练同一最大 projector；验证同一坐标顺序可被不同学生利用，并量化相对学生专用接口的损失。`[opinion]` |
+| 能力与预算匹配规律 | 测量不同学生达到给定质量所需的最小宽度，以及增加宽度的边际收益；据此识别通信受限与学生能力受限的部署区域。`[opinion]` |
 
 本项目将 **Composable** 操作性定义为：教师侧编码不依赖学生身份或所选宽度，同一 latent 可截取后与不同学生读取器组合使用。冻结协议后接入新学生是更强的扩展证据，不是首轮验证的前提。`[opinion]`
 
@@ -68,18 +68,27 @@ COPE 将上述思想扩展到跨模型生成：**同一教师表示的不同前�
 
 各组固定教师信号、数据划分、学生可见输入与适配配方，分别报告训练数据曝光和实际训练成本。主结果展示每个学生的完整质量—宽度曲线，不能只报告跨学生平均分；关键差异需有重复实验与不确定性估计。`[opinion]`
 
-## 创新边界与结果表述
+## 相较已有论文的核心差异
 
-已有工作覆盖的组成部分必须明确归因：
+**贡献概括：COPE 将 MRL 的嵌套前缀学习扩展为跨模型生成协议，通过学生与宽度的联合监督，研究一套教师 latent 的信息排序能否在不同能力的学生之间复用，并建立质量、通信预算与学生规模之间的实证匹配关系。** 前两项是方法设计，匹配规律是待实验支持的分析贡献。`[opinion]`
 
-- [LLM-to-SLM §3](https://arxiv.org/html/2402.16844v2#S3) 已采用大模型一次编码、小模型自回归生成。`[verified: 原文 §3.1–3.2]`
-- [Latent-Guided Reasoning §3](https://proceedings.iclr.cc/paper_files/paper/2026/file/6958e9d0f5a76d54ff97da8c45f4d52e-Paper-Conference.pdf) 已训练教师产生 latent guidance，并经投影指导学生生成。`[verified: 原文 §3.2–3.4]`
-- [C2C 附录 A.5.2](https://arxiv.org/html/2510.03215#A5.SS2) 已探索共享 latent projector 与多个接收模型，并报告表14实验。`[verified: 原文附录 A.5.2及表14]`
+| 对比论文 | 已有工作的着力点 | COPE 的研究增量 |
+|---|---|---|
+| [MRL](https://arxiv.org/html/2205.13147v4#S3) | 对同一表示的嵌套维度施加任务监督，支持多档表示容量。`[verified: §3 式1]` | 把前缀读取者扩展为多个不同规模的自回归学生，学习跨学生有效的排序。`[opinion]` |
+| [LLM-to-SLM](https://arxiv.org/html/2402.16844v2#S3) | 大模型一次编码；projector 将表征映射到学生 embedding 空间，再由学生解码。`[verified: §3.1–3.2]` | 将通信宽度与学生 hidden size 分开，使同一教师表示同时支持学生选择与预算选择。`[opinion]` |
+| [Latent-Guided Reasoning](https://proceedings.iclr.cc/paper_files/paper/2026/file/6958e9d0f5a76d54ff97da8c45f4d52e-Paper-Conference.pdf) | 训练教师形成 latent guidance，并经 MLP 指导学生生成可读推理。`[verified: §3.2–3.4]` | 研究指导表示内部的嵌套宽度与跨学生联合复用，重点验证每档前缀的生成效用。`[opinion]` |
+| [C2C](https://arxiv.org/html/2510.03215v2#A5.SS2) | KV cache 转换与融合；附录已探索共享 latent projector、多接收器和联合训练。`[verified: 附录 A.5.2及表14]` | 在共享接口上增加有序前缀预算轴，检验同一排序跨学生的有效性；不能将多接收器或共享投影本身作为新增贡献。`[opinion]` |
+| [OverFill](https://arxiv.org/abs/2508.08446) | 完整模型 Prefill 后切换到 dense-pruned 模型解码。`[verified: Abstract]` | 通过可学习的通信接口接入学生，研究 latent 预算的伸缩，不要求学生由教师剪枝得到。`[opinion]` |
+| [MentorPulse](https://arxiv.org/html/2608.20927#S1) | 增量处理学生新生成内容，刷新 latent memory，解决长生成中指导过期。`[verified: §1]` | 当前版本固定一次 Prefill，研究表示宽度与接收能力的匹配；宽度扩展不替代信息刷新。`[opinion]` |
+| [ReGuLaR](https://arxiv.org/abs/2601.23184) | 用 rendered CoT 的视觉语义表征正则化变分 latent reasoning。`[verified: Abstract]` | 关注教师到多个学生的可伸缩通信接口及复用代价。`[opinion]` |
 
-COPE 的贡献应围绕 **MRL 式有序前缀在跨学生生成接口中的有效性、共享代价与部署价值** 展开；单次 Prefill、latent 通信或多个学生本身不足以独立构成新增贡献。`[opinion]`
+核心技术问题是：**对不同学生都有用的信息，能否被排进同一套前缀顺序？** 对照学生专用 MRL projector 可以检验共享排序的代价，对照共享但只训练满宽的 projector 可以检验前缀监督的价值；二者共同构成核心证据。`[opinion]`
+
+## 结果表述边界
 
 解释实验时保持以下边界：
 
+- 多前缀损失继承自 MRL；单次 Prefill、latent 通信、共享 projector 与多接收器均有相关先例。贡献是上述跨学生有序接口的具体设计与验证；未完成更全面检索和实验前，不宣称“首次”、性能优越或普适规律。`[opinion]`
 - 多宽度监督不保证每个样本随宽度增加都更准确，也不预定义“前几维是计划、后几维是细节”。MRL 原文已观察到部分样本在低维下更准确。`[verified: MRL §5 “Disagreement across Dimensions”段落]`
 - 普通上下文 hidden states 不能直接称为教师已完成的推理计划；答案提升或可读 CoT 也不足以证明忠实传递了教师推理过程。`[opinion]`
 - 不预设学生越小就应使用越短前缀；能力与预算的匹配方向由实验决定。`[opinion]`
