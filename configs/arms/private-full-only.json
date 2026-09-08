@@ -1,0 +1,6 @@
+{
+  "arm": "private_full_only",
+  "projector_sharing": "private",
+  "branch_mode": "full_only",
+  "control": "correct"
+}

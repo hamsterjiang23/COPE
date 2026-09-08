@@ -1,0 +1,6 @@
+{
+  "arm": "no_latent",
+  "projector_sharing": "shared",
+  "branch_mode": "full_only",
+  "control": "no_latent"
+}

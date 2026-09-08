@@ -1,0 +1,6 @@
+{
+  "arm": "private_multi_width",
+  "projector_sharing": "private",
+  "branch_mode": "all_widths",
+  "control": "correct"
+}

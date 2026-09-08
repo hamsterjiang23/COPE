@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cope-protocol"
+version = "0.1.0"
+description = "Composable ordered-prefix latent protocol research framework"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.26",
+  "torch>=2.2",
+]
+
+[project.optional-dependencies]
+hf = [
+  "transformers>=4.45",
+]
+dev = [
+  "basedpyright>=1.23",
+  "pytest>=8.0",
+  "ruff>=0.8",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.basedpyright]
+include = ["src", "tests", "examples"]
+pythonVersion = "3.10"
+typeCheckingMode = "standard"

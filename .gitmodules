@@ -1,0 +1,9 @@
+[submodule "third_party/C2C"]
+	path = third_party/C2C
+	url = https://github.com/thu-nics/C2C.git
+[submodule "third_party/MRL"]
+	path = third_party/MRL
+	url = https://github.com/RAIVNLab/MRL.git
+[submodule "third_party/LLM-to-SLM"]
+	path = third_party/LLM-to-SLM
+	url = https://github.com/tosiyuki/LLM-to-SLM.git

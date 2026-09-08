@@ -317,3 +317,40 @@ MRL 主要提供前缀曲线、独立宽度对照、未训练宽度与任务分�
 未压缩的紧密 latent payload 按 `m × d × 每元素字节数` 计算，并单独记录协议头和复制等开销。固定 `m`、映射回固定 `h_s` 后，缩短 `d` 不会自动降低学生 Transformer 的解码宽度或 KV cache 大小；先计算满宽再截断也不会减少教师 Prefill 成本。`[opinion]`
 
 性能与成本须在明确硬件、批量、输入输出长度和通信条件下比较。参数共享减少接口数量，不等价于已证明训练更快或端到端加速。`[opinion]`
+
+## 当前实现、复用边界与后续工作
+
+截至 2026-09-08，仓库已经包含 COPE-native tensor framework 和三个固定上游 submodule；`src/cope/` 是当前自研实现的唯一 source of truth，`third_party/` 不得被描述为 COPE 自研代码。`[verified: .gitmodules L1-L9；THIRD_PARTY.md L1-L43]`
+
+### 已完成
+
+- `CopeSystem` 对一个 teacher encoding 进行一次 reducer 计算，并在 shared 或 private projector 模式下复用于多个 student-width branch。`[verified: src/cope/system.py L26-L157]`
+- `OrderedPrefixProjector` 只生成最大宽度 latent；所有部署宽度均为该 tensor 的 leading slice。`[verified: src/cope/projectors.py L8-L42]`
+- `TruncatedLinearReader` 实现 MRL-E 风格共享权重截断，`WidthSpecificReader` 实现 MRL 风格独立宽度 reader。`[verified: src/cope/readers.py L31-L76]`
+- `BranchPlanner` 支持 full-only、全宽度精确目标和逆概率校正的 sampled-width 近似。`[verified: src/cope/objectives.py L34-L89]`
+- 输入相关性诊断包含 no-latent、zero、learned-constant 和 cross-sample mismatched controls。`[verified: src/cope/controls.py L9-L46；configs/arms/*.json L1-L6]`
+- Hugging Face-compatible adapter 支持 teacher hidden-state 提取和 causal student prefix-embedding loss。`[verified: src/cope/adapters.py L34-L165]`
+- 已实现纠正率、伤害率、净准确率变化、payload bytes 和逐学生 cost Pareto 计算。`[verified: src/cope/evaluation.py L10-L109]`
+- 已编写 21 个 contract tests，覆盖 shape、nesting、sharing、controls、adapter、一次 Prefill 和参数冻结；依用户要求未运行全套 PyTorch tests。`[verified: tests 中 test function 统计；用户 2026-09-08 指令]`
+
+### 上游代码边界
+
+- C2C 固定在 `third_party/C2C`，作为工程参考与 shared full-width 外部 baseline；其 `RosettaModel`/`C2CProjector` 的逐层 KV-cache fusion 不直接进入 COPE 核心。`[verified: THIRD_PARTY.md L5-L12]`
+- MRL 固定在 `third_party/MRL`，其 nesting、weighted all-width loss、独立 head 与 MRL-E shared truncated head 是 COPE ordered-prefix 实现规范；ImageNet/FFCV pipeline 不复用。`[verified: THIRD_PARTY.md L14-L21]`
+- LLM-to-SLM 第三方复现固定在 `third_party/LLM-to-SLM`，只作为 private full-width embedding-injection baseline 参考，不视为论文作者官方实现。`[verified: THIRD_PARTY.md L23-L31]`
+- 三个上游的 commit、许可证和允许复用范围以 `THIRD_PARTY.md` 为准；修改上游行为时优先在 `src/cope/` 建 adapter，不直接修改 submodule。`[verified: THIRD_PARTY.md L1-L43；docs/implementation-plan.md L13-L32]`
+
+### 尚未完成
+
+- 未固定真实 teacher/student checkpoints、tokenizer、注入层和 student 可见输入配方。`[verified: 仓库中无真实模型 recipe]`
+- 未实现 KV-cache reader、PEFT/LoRA 专用 adapter、跨设备放置策略和生产级分布式 trainer。`[verified: src/cope 当前接口范围]`
+- 未将 C2C 官方 evaluator、LLM-to-SLM baseline 和 COPE 输出接入同一真实任务评测入口。`[verified: src/cope 中无 benchmark runner]`
+- 未接入数学、知识问答或工具调用数据，也未运行四格核心实验、重复种子、置信区间和端到端成本测量。`[verified: 仓库中无 benchmark recipe 或结果文件]`
+- 当前代码通过 compileall、Ruff 和 arm JSON 静态检查；只有早期 6 项模块 smoke 在用户要求停止 PyTorch 测试前运行，不能表述为全套测试通过。`[verified: 2026-09-08 tool output；用户 2026-09-08 指令]`
+
+### 后续实施顺序
+
+1. 固定一个同家族 teacher/student pair 与输入可见性协议，建立 private full-width 正对照。`[opinion]`
+2. 将真实任务 batch 接到 `build_huggingface_system`，先在小数据 slice 验证 loss、梯度和生成。`[opinion]`
+3. 在同一数据、模型和训练预算下运行 `private/shared × full-only/multi-width`。`[opinion]`
+4. 通过输入相关性 controls 后，再扩展中间宽度、新学生、知识问答、工具调用和 quality–width–cost 分析。`[opinion]`
