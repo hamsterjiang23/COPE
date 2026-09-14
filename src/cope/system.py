@@ -84,12 +84,41 @@ class CopeSystem(nn.Module):
 
     def _project(self, reduced_states: Tensor, student_ids: set[str]) -> dict[str, Tensor]:
         if self.shared_projector is not None:
-            maximum_latent = self.shared_projector(reduced_states)
+            parameter = next(self.shared_projector.parameters())
+            maximum_latent = self.shared_projector(reduced_states.to(parameter))
             return {student_id: maximum_latent for student_id in student_ids}
         return {
-            student_id: self.private_projectors[student_id](reduced_states)
+            student_id: self.private_projectors[student_id](
+                reduced_states.to(next(self.private_projectors[student_id].parameters()))
+            )
             for student_id in student_ids
         }
+
+    def encode(
+        self, teacher_inputs: Mapping[str, Tensor], student_ids: set[str] | None = None
+    ) -> dict[str, Tensor]:
+        """Encode deployment inputs once and return reusable maximum-width latents."""
+        student_ids = set(self.students) if student_ids is None else student_ids
+        if not student_ids <= set(self.students):
+            raise KeyError("unknown student in encode")
+        states = self.teacher(teacher_inputs)
+        if states.shape[-1] != self.config.teacher_hidden_size:
+            raise ValueError("teacher hidden size does not match protocol config")
+        reduced = self.reducer(states, teacher_inputs.get("attention_mask"))
+        if reduced.shape != (
+            states.shape[0],
+            self.config.num_slots,
+            self.config.teacher_hidden_size,
+        ):
+            raise ValueError("reducer output does not match protocol config")
+        return self._project(reduced, student_ids)
+
+    def read_latent(self, student_id: str, maximum_latent: Tensor, width: int) -> Tensor:
+        """Read a prefix on the reader's device, preserving cross-device gradients."""
+        self.config.validate_width(width)
+        reader = self.readers[student_id]
+        parameter = next(reader.parameters())
+        return reader(maximum_latent.to(parameter), width)
 
     def forward(
         self,
@@ -115,29 +144,7 @@ class CopeSystem(nn.Module):
         needs_teacher = any(branch.control is not ControlMode.NO_LATENT for branch in branches)
         maximum_latents: dict[str, Tensor] = {}
         if needs_teacher:
-            teacher_states = self.teacher(teacher_inputs)
-            if teacher_states.shape[-1] != self.config.teacher_hidden_size:
-                raise ValueError(
-                    "teacher hidden size does not match protocol config: "
-                    f"expected {self.config.teacher_hidden_size}, got {teacher_states.shape[-1]}"
-                )
-            attention_mask = teacher_inputs.get("attention_mask")
-            reduced_states = self.reducer(teacher_states, attention_mask)
-            if reduced_states.shape[:2] != (
-                teacher_states.shape[0],
-                self.config.num_slots,
-            ):
-                raise ValueError(
-                    "reducer output must have shape "
-                    f"[batch, {self.config.num_slots}, teacher_hidden_size]"
-                )
-            maximum_latents = self._project(reduced_states, requested_students)
-            if any(
-                latent.shape
-                != (teacher_states.shape[0], self.config.num_slots, self.config.max_width)
-                for latent in maximum_latents.values()
-            ):
-                raise ValueError("projector output does not match the configured latent shape")
+            maximum_latents = self.encode(teacher_inputs, requested_students)
 
         branch_losses: dict[str, Tensor] = {}
         for branch in branches:
@@ -148,7 +155,9 @@ class CopeSystem(nn.Module):
                 controlled_latent = self.controller(maximum_latent, branch.control)
                 if controlled_latent is None:
                     raise RuntimeError("latent controller returned no latent unexpectedly")
-                prefix_embeddings = self.readers[branch.student_id](controlled_latent, branch.width)
+                prefix_embeddings = self.read_latent(
+                    branch.student_id, controlled_latent, branch.width
+                )
             branch_losses[branch.key] = self.students[branch.student_id].compute_loss(
                 prefix_embeddings, student_batches[branch.student_id]
             )

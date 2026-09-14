@@ -1,0 +1,6 @@
+{
+  "root": "/root/autodl-tmp/COPE/outputs/v3/v3-20260913T140512Z-r01",
+  "checkpoints": {},
+  "events": "/root/autodl-tmp/COPE/outputs/v3/v3-20260913T140512Z-r01/events.jsonl",
+  "predictions": "/root/autodl-tmp/COPE/outputs/v3/v3-20260913T140512Z-r01/predictions"
+}

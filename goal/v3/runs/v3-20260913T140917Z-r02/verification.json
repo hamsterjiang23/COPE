@@ -1,0 +1,15 @@
+{
+  "checked_at": "2026-09-14T00:57:03.716481+00:00",
+  "cpu_pytest": {
+    "passed": 42,
+    "failed": 0,
+    "cuda_visible_devices": "",
+    "source_content_hash": "a4f64e09bb0df5a24745d62da2494240b3fae7cce13d4be76e117c846e436666",
+    "current_src_and_tests_match_frozen_source": true
+  },
+  "ruff": "passed: src tests scripts",
+  "json_and_summary_links": "passed",
+  "audit_script_sha256": "4a6f4b6303b17ccb57b82cc4125efb489c9de24d33cd49f632e2359ba634f6b9",
+  "automation": "cope-v3 PAUSED after completion archive",
+  "scope": "Post-run verification; no additional model training or generation."
+}

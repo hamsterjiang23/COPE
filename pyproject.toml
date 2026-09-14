@@ -17,6 +17,11 @@ dependencies = [
 hf = [
   "transformers>=4.45",
 ]
+experiment = [
+  "transformers==4.57.1",
+  "peft==0.17.1",
+  "pyarrow>=18",
+]
 dev = [
   "basedpyright>=1.23",
   "pytest>=8.0",

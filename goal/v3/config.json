@@ -1,0 +1,123 @@
+{
+  "teacher": {
+    "repo": "Qwen/Qwen3-14B",
+    "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+    "path": "/root/autodl-tmp/models/Qwen3-14B",
+    "hidden_size": 5120,
+    "device": "cuda:0",
+    "frozen": true
+  },
+  "student": {
+    "path": "/root/autodl-tmp/models/Qwen3-1.7B",
+    "hidden_size": 2048,
+    "device": "cuda:1",
+    "frozen": true
+  },
+  "server": {
+    "host": "seetacloud-A800-80G",
+    "workspace": "/root/autodl-tmp/COPE",
+    "output_root": "/root/autodl-tmp/COPE/outputs/v3",
+    "pueue_group": "cope-v3"
+  },
+  "version": "v3",
+  "seed": 42,
+  "training_scope": "interface_only",
+  "objective": "Find input-related gains for frozen students by screening multiple interfaces; no promised positive result.",
+  "dataset": {
+    "repo": "openai/gsm8k",
+    "revision": "740312add88f781978c0658806c59bc2815b9866",
+    "subset": "main",
+    "split": "train",
+    "path": "/root/autodl-tmp/COPE/data/gsm8k/train.parquet",
+    "train_size": 512,
+    "holdout_size": 256,
+    "split_seed": 303,
+    "calibration_size": 32,
+    "dev_size": 64,
+    "exclude_samples": "goal/v2/runs/v2-20260913T100946Z-r01/samples.json"
+  },
+  "interface": {
+    "slots": 32,
+    "width": 512,
+    "kv_rank": 32,
+    "reducer": "adaptive_masked_mean",
+    "width_supervision": "single_fixed_width",
+    "teacher_layers": {
+      "middle": 20,
+      "last": -1
+    }
+  },
+  "candidates": [
+    {
+      "id": "last_embedding",
+      "kind": "embedding",
+      "layer": -1
+    },
+    {
+      "id": "last_kv_add",
+      "kind": "kv_add",
+      "layer": -1
+    },
+    {
+      "id": "last_kv_replace",
+      "kind": "kv_replace",
+      "layer": -1
+    },
+    {
+      "id": "middle_embedding",
+      "kind": "embedding",
+      "layer": 20
+    },
+    {
+      "id": "middle_kv_add",
+      "kind": "kv_add",
+      "layer": 20
+    },
+    {
+      "id": "middle_kv_replace",
+      "kind": "kv_replace",
+      "layer": 20
+    }
+  ],
+  "training": {
+    "steps": 128,
+    "accumulation": 8,
+    "microbatch": 1,
+    "lr": 0.0003,
+    "weight_decay": 0,
+    "gradient_clip": 1,
+    "probe_samples": 16,
+    "probe_steps": 16,
+    "milestones": [
+      32,
+      64,
+      96,
+      128
+    ],
+    "prompt_max_tokens": 512,
+    "sequence_max_tokens": 1024
+  },
+  "generation": {
+    "enable_thinking": false,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "batch_size": 1
+  },
+  "budget": {
+    "seconds": 21600,
+    "evaluation_reserve_seconds": 7200
+  },
+  "selection": {
+    "score": "min(dev_correct_accuracy - dev_student_accuracy, dev_correct_accuracy - dev_test_mismatch_accuracy)",
+    "eligible": "learning probe NLL decreased AND selection score > 0",
+    "tie_break": "candidate id ascending",
+    "max_selected": 1,
+    "confirmation": "selected correct vs student/constant/trained mismatch/inference mismatch; every paired 95% lower bound > 0",
+    "qualification": "single seed promising only, requires replication"
+  },
+  "scoring": {
+    "primary": "numeric_answer_v3: #### then balanced boxed then explicit final-answer line; signed decimals, commas and numeric fractions; no arbitrary last number",
+    "secondary": "strict #### format success",
+    "frozen_before_generation": true
+  }
+}

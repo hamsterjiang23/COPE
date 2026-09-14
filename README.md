@@ -1,14 +1,22 @@
 # COPE
 
+> **当前方向：** 优先寻找冻结大小模型间能带来有效信息增益的接口。v3 比较保留学生问题 Prefill 与直接 Decode 的候选；v2 仅验证连续前缀注入，不能作为直接 Decode 路线的证据。
+
 **A Composable Ordered-Prefix Latent Protocol for Cross-Model Reasoning**
 
 一个教师执行一次输入 Prefill，经共享 reducer/projector 形成最大 latent；不同宽度的有序前缀由学生专用 reader 映射后，供多个同家族、不同规模的学生生成答案。`[verified: 项目发起者给定 COPE 定义；src/cope/system.py L26-L157]`
 
 本研究受 [Matryoshka Representation Learning](https://arxiv.org/abs/2205.13147) 启发，核心待验证命题是同一坐标顺序能否同时服务不同学生与通信预算。`[opinion]`
 
+**阅读入口：[当前目标、全部代码改动与后续路线](docs/project-status-and-roadmap.md) · [版本索引](goal/README.md) · [V3 最终结果](goal/v3/results.md)**
+
+## Experiment versions
+
+所有实验按 `goal/v1`、`goal/v2`、`goal/v3` 迭代，配置、过程和结果均归档于对应版本。见 [版本索引](goal/README.md)。v2 入口为 `python -m cope.real_experiment`，v3 入口为 `python -m cope.search_experiment`；历史 v1 须使用该 run 冻结源码，当前执行状态以版本索引为准。
+
 ## Current Status
 
-当前仓库已从研究说明扩展为可组装的 PyTorch 研究框架；尚未完成真实模型训练、benchmark 评测或论文结论验证。`[verified: src/cope source tree；仓库中无训练结果目录]`
+当前固定教师与学生，只训练中间接口。[v3](goal/v3/README.md) 已完成六种接口/教师层位组合的筛选及独立确认：正确组 55.86%，训练错配 59.38%，推理错配 56.25%，尚未确认输入相关信息增益，详见 [v3 结果](goal/v3/results.md)。[v2](goal/v2/README.md) 实现该训练边界和多前缀监督，真实模型实验已完成：短前缀有局部正信号，但正确 latent 未可靠优于常量或错配，详见 [v2 结果](goal/v2/results.md)。已完成的 [v1](goal/v1/results.md) 使用学生 LoRA 且只训练满宽，偏离当前目标，保留历史证据但不作为双冻结套娃方法的验证。
 
 已经实现：
 
@@ -45,6 +53,8 @@ configs/arms/             decisive factor arms and causal controls
 examples/toy_train.py     deterministic tensor-level usage example
 tests/                    authored contract tests
 third_party/              pinned upstream Git submodules
+goal/v1/, v2/, v3/        versioned recipes and immutable run evidence
+docs/project-status-and-roadmap.md  current goals, changes, findings and next steps
 docs/implementation-plan.md
 references/task-costs.md
 scripts/check_upstreams.py
@@ -87,7 +97,11 @@ system = build_huggingface_system(
 
 分支由 `BranchPlanner` 显式决定；`ALL_WIDTHS` 对应 faithful MRL-style objective，`SAMPLE_WIDTH` 是带逆概率校正的计算近似。`[verified: src/cope/objectives.py L34-L74]`
 
-## Not Completed
+## Framework scaffold snapshot (2026-09-08)
+
+以下为框架初建时状态；后续实现与实验进度以 `goal/` 版本记录为准。
+
+### Not Completed
 
 - 尚未选择和下载实际 teacher/student checkpoints。`[verified: 仓库中无 checkpoint 配置或权重]`
 - 尚未把 C2C 原始方法接入统一 COPE evaluator；C2C 当前作为固定 submodule baseline。`[verified: third_party/C2C；src/cope 中无 C2C adapter]`
@@ -97,9 +111,10 @@ system = build_huggingface_system(
 
 ## Next Work
 
-1. 固定首组同家族 teacher/student checkpoints 和 student 可见输入协议。`[opinion]`
-2. 接入一个小型数学数据 slice，先复现 private full-width 正对照。`[opinion]`
-3. 运行 `private/shared × full-only/multi-width` 四格核心实验。`[opinion]`
-4. 加入 constant/mismatched controls，随后扩展知识问答、工具调用与端到端成本测量。`[opinion]`
+已执行配方见 [v2](goal/v2/README.md)：教师与学生均冻结，四档前缀联合监督，仅更新中间模块，比较 full-only truncate、常量、错配与冻结学生基线。真实模型实验已完成。后续优先解决评分格式混杂、满宽退化及先复制满宽再截取的通信问题，见 [v2 结果与建议](goal/v2/results.md)；尚未启动 v3。
 
 研究假设、全部结果分支、实验门控和表述边界见 [AGENTS.md](AGENTS.md)。`[verified: AGENTS.md L1-L356]`
+
+## v3：有效信息传递优先
+
+用户最新确认的主目标是冻结大小模型间的有效信息传递；学生无问题 Prefill 是候选分支。已注册 [v3](goal/v3/README.md)，筛选连续前缀、附加 KV、替代问题 KV 与教师中间/末层的 6 个组合，开发集选择后独立留出确认。当前准备状态以版本索引为准。

@@ -1,0 +1,247 @@
+{
+  "status": "passed",
+  "run_id": "v3-20260913T140917Z-r02",
+  "training": {
+    "last_embedding": {
+      "steps": 128,
+      "exposures": 1024,
+      "changed_tensors": 10,
+      "active_parameters": 3946496,
+      "step_seconds": 128.4064859850332
+    },
+    "last_kv_add": {
+      "steps": 128,
+      "exposures": 1024,
+      "changed_tensors": 120,
+      "active_parameters": 5247872,
+      "step_seconds": 171.74268419016153
+    },
+    "last_kv_replace": {
+      "steps": 128,
+      "exposures": 1024,
+      "changed_tensors": 120,
+      "active_parameters": 5247872,
+      "step_seconds": 168.4119574110955
+    },
+    "middle_embedding": {
+      "steps": 128,
+      "exposures": 1024,
+      "changed_tensors": 10,
+      "active_parameters": 3946496,
+      "step_seconds": 134.92183354124427
+    },
+    "middle_kv_add": {
+      "steps": 128,
+      "exposures": 1024,
+      "changed_tensors": 120,
+      "active_parameters": 5247872,
+      "step_seconds": 179.8111949097365
+    },
+    "middle_kv_replace": {
+      "steps": 128,
+      "exposures": 1024,
+      "changed_tensors": 120,
+      "active_parameters": 5247872,
+      "step_seconds": 169.78540146443993
+    },
+    "middle_embedding_constant": {
+      "steps": 128,
+      "exposures": 1024,
+      "changed_tensors": 3,
+      "active_parameters": 1067008,
+      "step_seconds": 84.98751641064882
+    },
+    "middle_embedding_mismatched": {
+      "steps": 128,
+      "exposures": 1024,
+      "changed_tensors": 10,
+      "active_parameters": 3946496,
+      "step_seconds": 129.8773872870952
+    }
+  },
+  "latency": {
+    "calibration_student": {
+      "encode_ms": 0.0068296503741294146,
+      "reader_transfer_ms": 0.20925200078636408,
+      "generate_ms": 5330.746238207212,
+      "payload_bytes": 0.0
+    },
+    "dev_last_embedding": {
+      "encode_ms": 45.06201665208209,
+      "reader_transfer_ms": 0.4460414784261957,
+      "generate_ms": 2455.9346713649575,
+      "payload_bytes": 65536.0
+    },
+    "dev_last_embedding_test_mismatch": {
+      "encode_ms": 45.154934385209344,
+      "reader_transfer_ms": 0.4588620213326067,
+      "generate_ms": 2865.327764491667,
+      "payload_bytes": 65536.0
+    },
+    "dev_last_kv_add": {
+      "encode_ms": 45.02746177604422,
+      "reader_transfer_ms": 11.590773952775635,
+      "generate_ms": 2999.5476084877737,
+      "payload_bytes": 65536.0
+    },
+    "dev_last_kv_add_test_mismatch": {
+      "encode_ms": 45.636670765816234,
+      "reader_transfer_ms": 11.697210429701954,
+      "generate_ms": 2874.8932231537765,
+      "payload_bytes": 65536.0
+    },
+    "dev_last_kv_replace": {
+      "encode_ms": 45.9471455833409,
+      "reader_transfer_ms": 11.703269352437928,
+      "generate_ms": 3848.38656730426,
+      "payload_bytes": 65536.0
+    },
+    "dev_last_kv_replace_test_mismatch": {
+      "encode_ms": 46.60765087464824,
+      "reader_transfer_ms": 12.111580130294897,
+      "generate_ms": 3974.54630494758,
+      "payload_bytes": 65536.0
+    },
+    "dev_middle_embedding": {
+      "encode_ms": 46.9204367545899,
+      "reader_transfer_ms": 0.45105085882823914,
+      "generate_ms": 2914.5144788199104,
+      "payload_bytes": 65536.0
+    },
+    "dev_middle_embedding_test_mismatch": {
+      "encode_ms": 47.45287865807768,
+      "reader_transfer_ms": 0.4790076054632664,
+      "generate_ms": 3060.4715892404784,
+      "payload_bytes": 65536.0
+    },
+    "dev_middle_kv_add": {
+      "encode_ms": 46.63744883146137,
+      "reader_transfer_ms": 12.091163065633737,
+      "generate_ms": 2328.4328851441387,
+      "payload_bytes": 65536.0
+    },
+    "dev_middle_kv_add_test_mismatch": {
+      "encode_ms": 45.38521704671439,
+      "reader_transfer_ms": 11.62753596145194,
+      "generate_ms": 2697.9975647554966,
+      "payload_bytes": 65536.0
+    },
+    "dev_middle_kv_replace": {
+      "encode_ms": 45.01489968970418,
+      "reader_transfer_ms": 11.750214252970181,
+      "generate_ms": 2074.7888220648747,
+      "payload_bytes": 65536.0
+    },
+    "dev_middle_kv_replace_test_mismatch": {
+      "encode_ms": 44.3627453641966,
+      "reader_transfer_ms": 11.519338368088938,
+      "generate_ms": 2059.2364900076063,
+      "payload_bytes": 65536.0
+    },
+    "dev_student": {
+      "encode_ms": 0.006495960406027734,
+      "reader_transfer_ms": 0.19063153013121337,
+      "generate_ms": 5817.352565092733,
+      "payload_bytes": 0.0
+    },
+    "holdout_constant": {
+      "encode_ms": 0.009983297786675394,
+      "reader_transfer_ms": 0.45600615339935757,
+      "generate_ms": 4090.664134677354,
+      "payload_bytes": 65536.0
+    },
+    "holdout_correct": {
+      "encode_ms": 47.24496477501816,
+      "reader_transfer_ms": 0.46571443090215325,
+      "generate_ms": 2841.8942860553216,
+      "payload_bytes": 65536.0
+    },
+    "holdout_mismatched": {
+      "encode_ms": 46.132869876601035,
+      "reader_transfer_ms": 0.46058367297519,
+      "generate_ms": 3078.179951884522,
+      "payload_bytes": 65536.0
+    },
+    "holdout_student": {
+      "encode_ms": 0.006481724994955584,
+      "reader_transfer_ms": 0.19191375395166688,
+      "generate_ms": 5503.627203957876,
+      "payload_bytes": 0.0
+    },
+    "holdout_teacher": {
+      "encode_ms": 0.006590598786715418,
+      "reader_transfer_ms": 0.16083883383544162,
+      "generate_ms": 6155.68586552763,
+      "payload_bytes": 0.0
+    },
+    "holdout_test_mismatch": {
+      "encode_ms": 46.162986905983416,
+      "reader_transfer_ms": 0.4541477719612885,
+      "generate_ms": 2900.1422735964297,
+      "payload_bytes": 65536.0
+    }
+  },
+  "prediction_files": 20,
+  "source_hash": "a4f64e09bb0df5a24745d62da2494240b3fae7cce13d4be76e117c846e436666",
+  "file_sha256": {
+    "manifest.json": "a9384256bf193b794fa541d7ff79ac6a0e4d4f032aca1db7fbe6e72aa55e23fc",
+    "events.jsonl": "e666210c1864371028bd60d8dbc90574482b2d2431f9e0a85be55fda70e6cc97",
+    "selection.json": "82dada552ff17b649aedfa5dac4eb5c87db92a962ccb139f69afb37f7fb4effe",
+    "metrics.json": "7e62387826b8c34a64e777d519fff30d140f1cb8656b60c40406ce142b8d125b",
+    "artifacts.json": "45eb776c7816ec309e9c14211ee3947e711dc99aea4e65cb9eb389d55a57fa0c",
+    "predictions/calibration_student.jsonl": "cd5703cf70fe158f507d0d91204841a59fdd1d3beb77ac29bb52aa982755efcb",
+    "predictions/dev_student.jsonl": "91452669981a8c25f565877d21459f576aaa194b47016dc75739208962b5ef17",
+    "predictions/dev_last_embedding.jsonl": "7400806dac07cb92539193b3b8f1ff6ee2573edd77ec5aac8cd61fdfcff8c943",
+    "predictions/dev_last_embedding_test_mismatch.jsonl": "5ff7161de69a74afd944a49d1ac2a7c1a5d7fffd90845f8f6364b662d90f9129",
+    "predictions/dev_last_kv_add.jsonl": "309b32367fb217e45d45e9b429797e2bc5852da534f1668731243af63028d716",
+    "predictions/dev_last_kv_add_test_mismatch.jsonl": "f268bbbfb6c2387da44d95583164220a7c3755697a68a9510b655eca763c8566",
+    "predictions/dev_last_kv_replace.jsonl": "fe7578fbf7fba8bd28f7d62d1ab9a6d755164232caf3663692632d18daaa48e2",
+    "predictions/dev_last_kv_replace_test_mismatch.jsonl": "e2c22ae6d7d624e2fa81231d1eecaf0ae77200119dc9e0fedfe191009dd54ee8",
+    "predictions/dev_middle_embedding.jsonl": "afb2a8b9cefaaf44824425c5f9bedaf0f701906e593a62e1d3d80d0037a0ac60",
+    "predictions/dev_middle_embedding_test_mismatch.jsonl": "39df2a3d49bdcc09c8556e8dfc3fc6dd1d8a852670a3592a600110632786f7ec",
+    "predictions/dev_middle_kv_add.jsonl": "58d26fad9b8202d279e649c331763bbf48229abaf8f39da8cfc23929ccbf4a16",
+    "predictions/dev_middle_kv_add_test_mismatch.jsonl": "8e8e57e6d94da543bec29ceb6178bf9a6ac6d20daa0df454f14ec6914570fe65",
+    "predictions/dev_middle_kv_replace.jsonl": "038b1418f19405389b743fa1198eeb6c1745d81f5e4af923d99c63e04a935318",
+    "predictions/dev_middle_kv_replace_test_mismatch.jsonl": "4678f59ef62a3cbb74d1600441badf91c2d9f7d442f80fed37e2d335a2ecaa15",
+    "predictions/holdout_student.jsonl": "afcc6c8e136f223771478a3552ad5e4a32b32f331fc95ff3914c644d722d6cfb",
+    "predictions/holdout_correct.jsonl": "672a2cc70ab9f34282ef1415a71c69175385584959e67a8b56d8471b03cd37b2",
+    "predictions/holdout_test_mismatch.jsonl": "d104813ab55a75812b6974cb46bff45d9f942bbb592a62a66d0ef05c2ee8eef7",
+    "predictions/holdout_constant.jsonl": "bfacc4e6819f21f229ea13c8f09873fa57bee6cd4a25b4de7467ca01e342cde9",
+    "predictions/holdout_mismatched.jsonl": "2281f69444d1ab1fdd43c012e4fda831ce8e2c28dbb9a7aa59a892c31c52130a",
+    "predictions/holdout_teacher.jsonl": "0ba629f5e93327718bfdb1b52a9b2c6a664e6fe3f7ebe17021c25654d130b553",
+    "checkpoints/last_embedding/step-0032.pt": "336cac5be6f0227c09a39a9302546c42798853b33949d9afa8c7734bea2ea2c9",
+    "checkpoints/last_embedding/step-0064.pt": "a0ca3177dc3dfecc627b5393b038fb9c34104e0f78744c319360b2f522b36f51",
+    "checkpoints/last_embedding/step-0096.pt": "1521cd0fd81b2f0a43eed2f4d8e108534331d5bdb1546192c1e385224b11b878",
+    "checkpoints/last_embedding/step-0128.pt": "7129b31a1786af8cc018bceb16c1b1fd3af70611593092c6763d31006b8b7c29",
+    "checkpoints/last_kv_add/step-0032.pt": "c68150f1c46a848f4e8f53b28b326c898ee183d8e5a94dc1c509c7d4d70eb867",
+    "checkpoints/last_kv_add/step-0064.pt": "bd5a3259270294693356607e978a2c1b5f104384704fe95625a168390bc03701",
+    "checkpoints/last_kv_add/step-0096.pt": "681d6f0d54661304db2012efd800fb0eba7a1826c65f701374d283e5a98b9890",
+    "checkpoints/last_kv_add/step-0128.pt": "26cbd55852816c84b6cb5e85ff7efb92fd71a634e377b973ed3ca1e202a20f1d",
+    "checkpoints/last_kv_replace/step-0032.pt": "107bd88d3d68554c324ac3af8fa63aa09056571370e17f22fa2693312107cc12",
+    "checkpoints/last_kv_replace/step-0064.pt": "60352885d4fa40a4f330cacc6b0614809fb482d6c2206c5e0afaa447b20d5f1b",
+    "checkpoints/last_kv_replace/step-0096.pt": "4f8d9de3def7e2dd829b299e34f7cffacaa74c952286ccfa7c28780f25304d0a",
+    "checkpoints/last_kv_replace/step-0128.pt": "bc8eabab8f4e1d00a935fade1b97007ed3fffe6f57ee7a180c5fda3800978766",
+    "checkpoints/middle_embedding/step-0032.pt": "0532c22babe66b0e81c921059ecde316efff6017bcf1799295cd8f6096916002",
+    "checkpoints/middle_embedding/step-0064.pt": "a4f1d2fcf4c4ceac5ef452128538cb794a1c441426a7671935c5aed1c269daa6",
+    "checkpoints/middle_embedding/step-0096.pt": "4c507606d904b4513ce3b95385ed765be32543a3903fd44c499808aba6cbe147",
+    "checkpoints/middle_embedding/step-0128.pt": "fee587e3e10db8eae5ad75612b5a09fced0d149e3e900c300e0cd34e8e1483d8",
+    "checkpoints/middle_kv_add/step-0032.pt": "4df9c9d6d413ee481f6cf5a8af53f67e0bbe4a1f50ded1b41a7b71d5e9dc3246",
+    "checkpoints/middle_kv_add/step-0064.pt": "a150b0b8b14b550f1d18ac9c0d613b89ed55afad1c7604458f0b34fb85045c3f",
+    "checkpoints/middle_kv_add/step-0096.pt": "0993c4b45beb4a986021f563856336ec6b211e345c6dbaff925e97b00f0cf73f",
+    "checkpoints/middle_kv_add/step-0128.pt": "7d895087a99b4c16793906a41b93118c621583193989181e0985946bc7f76347",
+    "checkpoints/middle_kv_replace/step-0032.pt": "535af4aacf9210cee85824527750a4332fd394a4fb6939ebd1168f14d5d2dd98",
+    "checkpoints/middle_kv_replace/step-0064.pt": "05eae633b82507ff9083bc450bcb84f836b82ee8e7cda8c7da55f1b51fc16f90",
+    "checkpoints/middle_kv_replace/step-0096.pt": "e53d77643a243e9e90c22189529383549f0b570e188ba4d98a7af42d1f7e5937",
+    "checkpoints/middle_kv_replace/step-0128.pt": "15d26e40ca906210df7528256a1c0a1ad7d389fcdc513923afe1cdc8aa506df7",
+    "checkpoints/middle_embedding_constant/step-0032.pt": "028b936e88fa14ed246a1359051f52154bdb5ae40fbd435ff984cc0bf5e47b70",
+    "checkpoints/middle_embedding_constant/step-0064.pt": "8c2755861f6ba0814e0c4d30c5d3b152e6130577bf054192ee2e9ba9a1906354",
+    "checkpoints/middle_embedding_constant/step-0096.pt": "3e1fe4ef7ef186146abd015a6168acbfea05c61f692bdd1873b1027db14fb2e9",
+    "checkpoints/middle_embedding_constant/step-0128.pt": "df414a3f059b5f6075cf55a9dc37f126209ccdaca6f509cc1802c976592fca1d",
+    "checkpoints/middle_embedding_mismatched/step-0032.pt": "b778e69c0b3857ee049e2e3a655164104794d3cc1d0cf59a3ba7f09e1e73126d",
+    "checkpoints/middle_embedding_mismatched/step-0064.pt": "eb0733f1490bb7fba3cf6aeed1e4d5978dd35bf6e6c6f8be1569fd34ac0ed337",
+    "checkpoints/middle_embedding_mismatched/step-0096.pt": "5457d12bf25a10962cae93213321dc69c84a1c29f4f836105126be6db60b8b97",
+    "checkpoints/middle_embedding_mismatched/step-0128.pt": "77da43b5753930a39241bb02d2384dd566a5384fc39017f842deef3587769f02"
+  },
+  "scope": "CPU evidence audit; runtime freeze checks plus unchanged model assets, not a post-exit comparison of in-memory backbone tensors",
+  "auditor_sha256": "4a6f4b6303b17ccb57b82cc4125efb489c9de24d33cd49f632e2359ba634f6b9"
+}

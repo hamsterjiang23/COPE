@@ -1,0 +1,15 @@
+{
+  "root": "/root/autodl-tmp/COPE/outputs/v3/v3-20260913T140917Z-r02",
+  "checkpoints": {
+    "last_embedding": "/root/autodl-tmp/COPE/outputs/v3/v3-20260913T140917Z-r02/checkpoints/last_embedding/step-0128.pt",
+    "last_kv_add": "/root/autodl-tmp/COPE/outputs/v3/v3-20260913T140917Z-r02/checkpoints/last_kv_add/step-0128.pt",
+    "last_kv_replace": "/root/autodl-tmp/COPE/outputs/v3/v3-20260913T140917Z-r02/checkpoints/last_kv_replace/step-0128.pt",
+    "middle_embedding": "/root/autodl-tmp/COPE/outputs/v3/v3-20260913T140917Z-r02/checkpoints/middle_embedding/step-0128.pt",
+    "middle_kv_add": "/root/autodl-tmp/COPE/outputs/v3/v3-20260913T140917Z-r02/checkpoints/middle_kv_add/step-0128.pt",
+    "middle_kv_replace": "/root/autodl-tmp/COPE/outputs/v3/v3-20260913T140917Z-r02/checkpoints/middle_kv_replace/step-0128.pt",
+    "middle_embedding_constant": "/root/autodl-tmp/COPE/outputs/v3/v3-20260913T140917Z-r02/checkpoints/middle_embedding_constant/step-0128.pt",
+    "middle_embedding_mismatched": "/root/autodl-tmp/COPE/outputs/v3/v3-20260913T140917Z-r02/checkpoints/middle_embedding_mismatched/step-0128.pt"
+  },
+  "events": "/root/autodl-tmp/COPE/outputs/v3/v3-20260913T140917Z-r02/events.jsonl",
+  "predictions": "/root/autodl-tmp/COPE/outputs/v3/v3-20260913T140917Z-r02/predictions"
+}

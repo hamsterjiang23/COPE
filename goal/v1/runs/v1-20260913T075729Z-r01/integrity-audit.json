@@ -1,0 +1,209 @@
+{
+  "run_id": "v1-20260913T075729Z-r01",
+  "audit_script_sha256": "ff47ab1f34736daf36ee88356e3970435c706463d65c40d313f400f0a573130a",
+  "same_training_order": true,
+  "train_holdout_disjoint": true,
+  "mismatched_donors_disjoint_from_receivers": true,
+  "training": {
+    "correct": {
+      "steps": 128,
+      "sample_exposures": 1024,
+      "unique_samples": 1024,
+      "lora_b_tensors_updated": 56,
+      "sequence_sha256": "e9257a417eacb4d94316ce99fdc22bd1e3ae0d7ac282a1cb8a05bfc9bb23c779"
+    },
+    "no_latent": {
+      "steps": 128,
+      "sample_exposures": 1024,
+      "unique_samples": 1024,
+      "lora_b_tensors_updated": 56,
+      "sequence_sha256": "e9257a417eacb4d94316ce99fdc22bd1e3ae0d7ac282a1cb8a05bfc9bb23c779"
+    },
+    "constant": {
+      "steps": 128,
+      "sample_exposures": 1024,
+      "unique_samples": 1024,
+      "lora_b_tensors_updated": 56,
+      "sequence_sha256": "e9257a417eacb4d94316ce99fdc22bd1e3ae0d7ac282a1cb8a05bfc9bb23c779"
+    },
+    "mismatched": {
+      "steps": 128,
+      "sample_exposures": 1024,
+      "unique_samples": 1024,
+      "lora_b_tensors_updated": 56,
+      "sequence_sha256": "e9257a417eacb4d94316ce99fdc22bd1e3ae0d7ac282a1cb8a05bfc9bb23c779"
+    }
+  },
+  "predictions": {
+    "constant": {
+      "n": 128,
+      "correct": 89,
+      "parse_failures": 2,
+      "truncated": 2
+    },
+    "correct": {
+      "n": 128,
+      "correct": 88,
+      "parse_failures": 5,
+      "truncated": 5
+    },
+    "correct_test_mismatched": {
+      "n": 128,
+      "correct": 85,
+      "parse_failures": 4,
+      "truncated": 4
+    },
+    "mismatched": {
+      "n": 128,
+      "correct": 94,
+      "parse_failures": 1,
+      "truncated": 1
+    },
+    "no_latent": {
+      "n": 128,
+      "correct": 82,
+      "parse_failures": 0,
+      "truncated": 0
+    },
+    "raw_student": {
+      "n": 128,
+      "correct": 10,
+      "parse_failures": 118,
+      "truncated": 3
+    },
+    "teacher": {
+      "n": 128,
+      "correct": 115,
+      "parse_failures": 8,
+      "truncated": 2
+    }
+  },
+  "common_milestones": [
+    32,
+    64,
+    96,
+    128
+  ],
+  "learning_probe": {
+    "time": "2026-09-13T07:58:05.421164+00:00",
+    "kind": "learning_probe",
+    "budget_used_seconds": 33.739136959426105,
+    "before_nll": 2.1018134504556656,
+    "after_nll": 0.3654181119054556,
+    "decreased": true
+  },
+  "files": {
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/manifest.json": {
+      "size": 16671,
+      "sha256": "888d6f983d996e7568255a6a089c03a932477da83aa233f8325be06b48b36ea8"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/metrics.json": {
+      "size": 7918,
+      "sha256": "c10b512bd18146d26a41798e693485ba7765be3291cf9d8bc9c3302d368dde0a"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/artifacts.json": {
+      "size": 756,
+      "sha256": "f92fe6fd42a06bf839ae88a186947c845eaed9ba9ce5e6fe4f9717faa1586bd7"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/events.jsonl": {
+      "size": 704773,
+      "sha256": "9d4955023ce3dfc9998667cb42ff62817346a0f10c0f81317b7092c67c0b8634"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/predictions/constant.jsonl": {
+      "size": 84339,
+      "sha256": "e4f3db859068afdf9e796bdd1e2d98d356074ceb420fee4db269c4b426fffbc2"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/predictions/correct.jsonl": {
+      "size": 88422,
+      "sha256": "b603a6829043fd98dc53816fc8a1ff1cb5d21f5c0baad84ae1eab5e1c1c161b1"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/predictions/correct_test_mismatched.jsonl": {
+      "size": 96441,
+      "sha256": "debfb0437503be23c98f9eee2b436895b7f3431efb47835abb675a1ec6a8ea95"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/predictions/mismatched.jsonl": {
+      "size": 91378,
+      "sha256": "fb10de40ed24b86d0dc6a82861e705fa9d79fc9097a9241415b4a8e87f7dafb3"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/predictions/no_latent.jsonl": {
+      "size": 77969,
+      "sha256": "dadc7ea5915549483b7903146780981fa7b110015cad2ab399387834ea007204"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/predictions/raw_student.jsonl": {
+      "size": 129217,
+      "sha256": "a55807f3ac990551c1ec19bad04555aa7793166b0e1148cfb0ce008a71274784"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/predictions/teacher.jsonl": {
+      "size": 114173,
+      "sha256": "fb86027c21a3c62f99f0276c73acfa7d06092588658cc456794757f14e2c57a7"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/constant/step-0032.pt": {
+      "size": 236111499,
+      "sha256": "40f1c49436841bc55942e6b62aba9d7deb58bc27d2280f4f746e738d7b946756"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/constant/step-0064.pt": {
+      "size": 236111883,
+      "sha256": "0a2207d4b95a4e5398e236f07a03618eca6b857c1f5ed0955c8c597d48c65fdb"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/constant/step-0096.pt": {
+      "size": 236111883,
+      "sha256": "20c9530f74ee848de0a32a4f6a5cf15d2fa9479948a47c2045996a11b2c4f974"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/constant/step-0128.pt": {
+      "size": 236111883,
+      "sha256": "33bd738cc83cc4c26e54baa78277bea524ff3dc533c34cf62193b39db937296e"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/correct/step-0032.pt": {
+      "size": 529725067,
+      "sha256": "8bf356325edce2c5205851b791ebae78b8d04332a0d726a5f6b637f7f25554c2"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/correct/step-0064.pt": {
+      "size": 529725387,
+      "sha256": "06606b17b1abf6ea7c03aaf829cbfaff324817a053c3a665bf831ad6c7ffdef0"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/correct/step-0096.pt": {
+      "size": 529725387,
+      "sha256": "14786c81a853a40902e9957d70fedb5d443baee6b8375c36fcd136511853add8"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/correct/step-0128.pt": {
+      "size": 529725387,
+      "sha256": "55185f6c1fc6fa90cfa7ca5e621dbbebafb1b4c42f774296bf8dd346302be59e"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/mismatched/step-0032.pt": {
+      "size": 529725067,
+      "sha256": "e3431311d661e85fa314885db3a5b943d6e7f74f717b42c24a02eb95642ef16a"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/mismatched/step-0064.pt": {
+      "size": 529725387,
+      "sha256": "49f89316dafd8e627a1cd86c7ebfc70efb739d655a17d6f2dc9c941365b74ea4"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/mismatched/step-0096.pt": {
+      "size": 529725387,
+      "sha256": "be80a0a157c0800a752f81395cbf6fb0d990a65c2c2fa821a3f5014ed07b0d92"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/mismatched/step-0128.pt": {
+      "size": 529725387,
+      "sha256": "daa65f14ad2182b03681956ca1606b4946f7edb458b22b97fc6dc28b358bbd80"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/no_latent/step-0032.pt": {
+      "size": 202407051,
+      "sha256": "ccf95c62b7907301a31cad06986e7fbcbea5911d97d6b5ff15f57e7f6422351f"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/no_latent/step-0064.pt": {
+      "size": 202407371,
+      "sha256": "2000edc635bc271e06ca954d897c68806ce7dd73480cf56f1f8d29d35c719d71"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/no_latent/step-0096.pt": {
+      "size": 202407371,
+      "sha256": "024b09d41d4eaa4125f776bf1f7ca6b518b77bfeb6baf655f91422395ec78e0b"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/no_latent/step-0128.pt": {
+      "size": 202407371,
+      "sha256": "a8cf072465250ec0b3d7c12c0dbfddc09ea596142ffaacab9635e625f074688f"
+    },
+    "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/postprocess/pueue-15.log": {
+      "size": 706149,
+      "sha256": "cd147dee075915770d67a0fbdd7ed72e9070e0e8d3909c130d004903f3aa8416"
+    }
+  }
+}

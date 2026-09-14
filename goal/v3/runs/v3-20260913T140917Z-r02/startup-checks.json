@@ -1,0 +1,132 @@
+{
+  "start_token_id": 271,
+  "events": [
+    {
+      "time": "2026-09-13T14:09:19.647873+00:00",
+      "kind": "budget_inherited",
+      "budget_used_seconds": 72.31476495787501,
+      "prior_seconds": 72.1367809260264
+    },
+    {
+      "time": "2026-09-13T14:09:30.435383+00:00",
+      "kind": "models_loaded",
+      "budget_used_seconds": 83.10229058656842,
+      "teacher_trainable": 0,
+      "student_trainable": 0
+    },
+    {
+      "time": "2026-09-13T14:09:30.984026+00:00",
+      "kind": "native_cache_check",
+      "budget_used_seconds": 83.6509371008724,
+      "max_abs_logit_error": 2.6702880859375e-05,
+      "same_greedy_token": true,
+      "validation_dtype": "float32_copy",
+      "experimental_dtype": "bfloat16_unchanged"
+    },
+    {
+      "time": "2026-09-13T14:09:31.121317+00:00",
+      "kind": "native_cache_check",
+      "budget_used_seconds": 83.78822114970535,
+      "max_abs_logit_error": 3.62396240234375e-05,
+      "same_greedy_token": true,
+      "validation_dtype": "float32_copy",
+      "experimental_dtype": "bfloat16_unchanged"
+    },
+    {
+      "time": "2026-09-13T14:09:31.508503+00:00",
+      "kind": "real_probe",
+      "budget_used_seconds": 84.17540535703301,
+      "candidate": "last_embedding",
+      "loss": 3.056941270828247,
+      "teacher_calls_this_batch": 1
+    },
+    {
+      "time": "2026-09-13T14:09:31.635646+00:00",
+      "kind": "real_probe",
+      "budget_used_seconds": 84.30255047325045,
+      "candidate": "last_embedding",
+      "loss": 1.5443902015686035,
+      "teacher_calls_this_batch": 1
+    },
+    {
+      "time": "2026-09-13T14:09:31.853212+00:00",
+      "kind": "real_probe",
+      "budget_used_seconds": 84.5201186882332,
+      "candidate": "last_kv_add",
+      "loss": 1.9393210411071777,
+      "teacher_calls_this_batch": 1
+    },
+    {
+      "time": "2026-09-13T14:09:32.024792+00:00",
+      "kind": "real_probe",
+      "budget_used_seconds": 84.69169561006129,
+      "candidate": "last_kv_add",
+      "loss": 2.153318405151367,
+      "teacher_calls_this_batch": 1
+    },
+    {
+      "time": "2026-09-13T14:09:32.236708+00:00",
+      "kind": "real_probe",
+      "budget_used_seconds": 84.90361414197832,
+      "candidate": "last_kv_replace",
+      "loss": 6.427745342254639,
+      "teacher_calls_this_batch": 1
+    },
+    {
+      "time": "2026-09-13T14:09:32.409368+00:00",
+      "kind": "real_probe",
+      "budget_used_seconds": 85.07627296634018,
+      "candidate": "last_kv_replace",
+      "loss": 3.0166399478912354,
+      "teacher_calls_this_batch": 1
+    },
+    {
+      "time": "2026-09-13T14:09:32.558238+00:00",
+      "kind": "real_probe",
+      "budget_used_seconds": 85.22514151223004,
+      "candidate": "middle_embedding",
+      "loss": 2.471729278564453,
+      "teacher_calls_this_batch": 1
+    },
+    {
+      "time": "2026-09-13T14:09:32.685280+00:00",
+      "kind": "real_probe",
+      "budget_used_seconds": 85.35218450333923,
+      "candidate": "middle_embedding",
+      "loss": 2.0476348400115967,
+      "teacher_calls_this_batch": 1
+    },
+    {
+      "time": "2026-09-13T14:09:32.887188+00:00",
+      "kind": "real_probe",
+      "budget_used_seconds": 85.55409475695342,
+      "candidate": "middle_kv_add",
+      "loss": 2.0219218730926514,
+      "teacher_calls_this_batch": 1
+    },
+    {
+      "time": "2026-09-13T14:09:33.067675+00:00",
+      "kind": "real_probe",
+      "budget_used_seconds": 85.73458431195468,
+      "candidate": "middle_kv_add",
+      "loss": 2.2413675785064697,
+      "teacher_calls_this_batch": 1
+    },
+    {
+      "time": "2026-09-13T14:09:33.272230+00:00",
+      "kind": "real_probe",
+      "budget_used_seconds": 85.93913639802486,
+      "candidate": "middle_kv_replace",
+      "loss": 1.9612433910369873,
+      "teacher_calls_this_batch": 1
+    },
+    {
+      "time": "2026-09-13T14:09:33.446303+00:00",
+      "kind": "real_probe",
+      "budget_used_seconds": 86.11320785898715,
+      "candidate": "middle_kv_replace",
+      "loss": 2.3201355934143066,
+      "teacher_calls_this_batch": 1
+    }
+  ]
+}

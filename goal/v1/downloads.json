@@ -1,0 +1,122 @@
+[
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3-14B/resolve/40c069824f4251a91eefaf281ebe4c544efd3e18/config.json",
+    "destination": "/root/autodl-tmp/models/Qwen3-14B/config.json",
+    "size": 728,
+    "sha256": null,
+    "git_blob_sha1": "37e7491082573462e8545299cdf6938e8b684e31"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3-14B/resolve/40c069824f4251a91eefaf281ebe4c544efd3e18/generation_config.json",
+    "destination": "/root/autodl-tmp/models/Qwen3-14B/generation_config.json",
+    "size": 239,
+    "sha256": null,
+    "git_blob_sha1": "20a8a9156fc8c3f25295ca067f61fdf120d517c5"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3-14B/resolve/40c069824f4251a91eefaf281ebe4c544efd3e18/merges.txt",
+    "destination": "/root/autodl-tmp/models/Qwen3-14B/merges.txt",
+    "size": 1671853,
+    "sha256": null,
+    "git_blob_sha1": "31349551d90c7606f325fe0f11bbb8bd5fa0d7c7"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3-14B/resolve/40c069824f4251a91eefaf281ebe4c544efd3e18/model-00001-of-00008.safetensors",
+    "destination": "/root/autodl-tmp/models/Qwen3-14B/model-00001-of-00008.safetensors",
+    "size": 3841788544,
+    "sha256": "e942bdbdf08857d16a8fef7d1dae9fceabeb4e84def6043485fe2f6f085dab0e",
+    "git_blob_sha1": "bf075349c5631d4d123b5195773e80be845006f4",
+    "mirror_url": "https://modelscope.cn/models/Qwen/Qwen3-14B/resolve/c7fd315464f797b23034445e63c66d980d62ec50/model-00001-of-00008.safetensors"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3-14B/resolve/40c069824f4251a91eefaf281ebe4c544efd3e18/model-00002-of-00008.safetensors",
+    "destination": "/root/autodl-tmp/models/Qwen3-14B/model-00002-of-00008.safetensors",
+    "size": 3963750816,
+    "sha256": "f7c9c6eee628f5ad831d2d1d292e120505e5fcadeb38f88b4d3c4cb86306ccf9",
+    "git_blob_sha1": "80454a641cc55f0c7a8aa99afaa8df7461b54136",
+    "mirror_url": "https://modelscope.cn/models/Qwen/Qwen3-14B/resolve/c7fd315464f797b23034445e63c66d980d62ec50/model-00002-of-00008.safetensors"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3-14B/resolve/40c069824f4251a91eefaf281ebe4c544efd3e18/model-00003-of-00008.safetensors",
+    "destination": "/root/autodl-tmp/models/Qwen3-14B/model-00003-of-00008.safetensors",
+    "size": 3963750880,
+    "sha256": "dfb8c5df9404b41ad6ae74e8b6b367135f017b4467b884cf71b17c71954f18a9",
+    "git_blob_sha1": "b722023749ee7b6e1af203484157a25974de13aa",
+    "mirror_url": "https://modelscope.cn/models/Qwen/Qwen3-14B/resolve/c7fd315464f797b23034445e63c66d980d62ec50/model-00003-of-00008.safetensors"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3-14B/resolve/40c069824f4251a91eefaf281ebe4c544efd3e18/model-00004-of-00008.safetensors",
+    "destination": "/root/autodl-tmp/models/Qwen3-14B/model-00004-of-00008.safetensors",
+    "size": 3963750880,
+    "sha256": "eab286fec759e3e59ab228621aefa0fef14ed56039e06f959e67257d5af7604d",
+    "git_blob_sha1": "c1ba8959e0fe9ff5cf2e587c57f867a4b2098ceb",
+    "mirror_url": "https://modelscope.cn/models/Qwen/Qwen3-14B/resolve/c7fd315464f797b23034445e63c66d980d62ec50/model-00004-of-00008.safetensors"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3-14B/resolve/40c069824f4251a91eefaf281ebe4c544efd3e18/model-00005-of-00008.safetensors",
+    "destination": "/root/autodl-tmp/models/Qwen3-14B/model-00005-of-00008.safetensors",
+    "size": 3963750880,
+    "sha256": "97f0dc2992e59da95c466eff6f4fd0c8335843bbc36ed5c913a6f5150748c0e6",
+    "git_blob_sha1": "ff4ce681764b7859d25310530107736afcc8f191",
+    "mirror_url": "https://modelscope.cn/models/Qwen/Qwen3-14B/resolve/c7fd315464f797b23034445e63c66d980d62ec50/model-00005-of-00008.safetensors"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3-14B/resolve/40c069824f4251a91eefaf281ebe4c544efd3e18/model-00006-of-00008.safetensors",
+    "destination": "/root/autodl-tmp/models/Qwen3-14B/model-00006-of-00008.safetensors",
+    "size": 3963750880,
+    "sha256": "9e8e76a013cd5e253865b792991e0b410f869b136b3c500079b531b09198e99e",
+    "git_blob_sha1": "34f3d88dbf75c08240a5eca7fb4b584fc25f0cae",
+    "mirror_url": "https://modelscope.cn/models/Qwen/Qwen3-14B/resolve/c7fd315464f797b23034445e63c66d980d62ec50/model-00006-of-00008.safetensors"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3-14B/resolve/40c069824f4251a91eefaf281ebe4c544efd3e18/model-00007-of-00008.safetensors",
+    "destination": "/root/autodl-tmp/models/Qwen3-14B/model-00007-of-00008.safetensors",
+    "size": 3963750880,
+    "sha256": "0aee70ee6e91dc00d818804fb47f124d13ee4ad5b4a64553e09dbf9391cd5750",
+    "git_blob_sha1": "40045b81cfaa9f875328b98e65e09ab22b3140a8",
+    "mirror_url": "https://modelscope.cn/models/Qwen/Qwen3-14B/resolve/c7fd315464f797b23034445e63c66d980d62ec50/model-00007-of-00008.safetensors"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3-14B/resolve/40c069824f4251a91eefaf281ebe4c544efd3e18/model-00008-of-00008.safetensors",
+    "destination": "/root/autodl-tmp/models/Qwen3-14B/model-00008-of-00008.safetensors",
+    "size": 1912371880,
+    "sha256": "0d6b92296e326d39bbbaeb32c3ec454ac606da843d4c8ffa8edf010b62b8c9e0",
+    "git_blob_sha1": "535e13b3d8e05d5fcf16f0388f696ef1ef5d099c",
+    "mirror_url": "https://modelscope.cn/models/Qwen/Qwen3-14B/resolve/c7fd315464f797b23034445e63c66d980d62ec50/model-00008-of-00008.safetensors"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3-14B/resolve/40c069824f4251a91eefaf281ebe4c544efd3e18/model.safetensors.index.json",
+    "destination": "/root/autodl-tmp/models/Qwen3-14B/model.safetensors.index.json",
+    "size": 36514,
+    "sha256": null,
+    "git_blob_sha1": "b4d92f9fec7ec78a89aaf1cf9d740ffc69cb9aac"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3-14B/resolve/40c069824f4251a91eefaf281ebe4c544efd3e18/tokenizer.json",
+    "destination": "/root/autodl-tmp/models/Qwen3-14B/tokenizer.json",
+    "size": 11422654,
+    "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "git_blob_sha1": "cd71f61a15a522601badb3dc960d800d9cb3766c"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3-14B/resolve/40c069824f4251a91eefaf281ebe4c544efd3e18/tokenizer_config.json",
+    "destination": "/root/autodl-tmp/models/Qwen3-14B/tokenizer_config.json",
+    "size": 9732,
+    "sha256": null,
+    "git_blob_sha1": "417d038a63fa3de29cfde265caedae14d1a58d92"
+  },
+  {
+    "url": "https://huggingface.co/Qwen/Qwen3-14B/resolve/40c069824f4251a91eefaf281ebe4c544efd3e18/vocab.json",
+    "destination": "/root/autodl-tmp/models/Qwen3-14B/vocab.json",
+    "size": 2776833,
+    "sha256": null,
+    "git_blob_sha1": "4783fe10ac3adce15ac8f358ef5462739852c569"
+  },
+  {
+    "url": "https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/main/train-00000-of-00001.parquet",
+    "destination": "/root/autodl-tmp/COPE/data/gsm8k/train.parquet",
+    "size": 2306545,
+    "sha256": "ea82612ea9582142387730c793eb67d3b12849002bc0b7fa6f8efafa7351419d",
+    "git_blob_sha1": "61b47c916c27533feaa3763484ae0ea58f92b056"
+  }
+]

@@ -13,3 +13,5 @@ outputs/
 checkpoints/
 wandb/
 data/
+checkouts/
+.cache/

@@ -1,0 +1,23 @@
+{
+  "run_id": "v2-20260913T100946Z-r01",
+  "kind": "post_run_cost_interpretation",
+  "original_metrics_unchanged": true,
+  "source_file": "src/cope/system.py",
+  "source_sha256": "c19e455c78a34aa209a62307b6dd259ac768e367213fbdc9e3933e1e752cf6c1",
+  "operation": "reader(maximum_latent.to(parameter), width)",
+  "observation": "The full [batch,8,2048] FP32 latent is copied from cuda:0 to cuda:1 before reader slicing.",
+  "logical_prefix_bytes_by_width": {
+    "256": 8192,
+    "512": 16384,
+    "1024": 32768,
+    "2048": 65536
+  },
+  "actual_tensor_copy_bytes_per_sample_by_width": {
+    "256": 65536,
+    "512": 65536,
+    "1024": 65536,
+    "2048": 65536
+  },
+  "measurement_basis": "frozen code and tensor shapes; not a CUDA bus traffic profiler",
+  "limitation": "No measured communication reduction across widths; original payload.by_width is logical prefix size only."
+}

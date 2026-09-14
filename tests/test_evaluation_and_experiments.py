@@ -26,7 +26,11 @@ def test_pareto_frontier_is_computed_per_student() -> None:
         QualityWidthRecord("small", 8, 0.6, 30.0, 16),
         QualityWidthRecord("large", 2, 0.8, 15.0, 4),
     ]
-    assert pareto_frontier(records) == [records[0], records[1], records[3]]
+    # Frontier membership is independent of the returned student-name ordering.
+    frontier = pareto_frontier(records)
+    assert len(frontier) == 3
+    assert records[0] in frontier and records[1] in frontier and records[3] in frontier
+    assert records[2] not in frontier
 
 
 def test_correction_statistics_reports_benefit_and_harm() -> None:
@@ -41,3 +45,10 @@ def test_correction_statistics_reports_benefit_and_harm() -> None:
     assert stats.harmed == 1
     assert stats.harmful_override_rate == 0.5
     assert stats.net_accuracy_change == 0.0
+
+
+def test_net_gain_includes_corrections_when_teacher_also_failed() -> None:
+    stats = correction_statistics([False, True], [False, False], [True, True])
+    assert stats.corrected == 1
+    assert stats.other_corrected == 1
+    assert stats.net_accuracy_change == 1.0

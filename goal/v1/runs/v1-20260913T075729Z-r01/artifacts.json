@@ -1,0 +1,12 @@
+{
+  "server": "seetacloud-A800-80G",
+  "root": "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01",
+  "events": "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/events.jsonl",
+  "predictions": "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/predictions",
+  "latest_checkpoints": {
+    "correct": "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/correct/step-0128.pt",
+    "no_latent": "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/no_latent/step-0128.pt",
+    "constant": "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/constant/step-0128.pt",
+    "mismatched": "/root/autodl-tmp/COPE/outputs/v1/v1-20260913T075729Z-r01/checkpoints/mismatched/step-0128.pt"
+  }
+}

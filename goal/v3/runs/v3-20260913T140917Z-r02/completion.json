@@ -1,0 +1,17 @@
+{
+  "id": 18,
+  "label": "v3-20260913T140917Z-r02",
+  "status": {
+    "Done": {
+      "enqueued_at": "2026-09-13T22:09:18.148701134+08:00",
+      "start": "2026-09-13T22:09:18.156643272+08:00",
+      "end": "2026-09-14T01:04:23.476342155+08:00",
+      "result": "Success"
+    }
+  },
+  "command": "bash /root/autodl-tmp/COPE/outputs/preparation/v3-20260913T140917Z-r02/launch.sh",
+  "path": "/root/autodl-tmp/COPE/checkouts/a4f64e09bb0df5a24745d62da2494240b3fae7cce13d4be76e117c846e436666",
+  "group": "cope-v3",
+  "log_path": "/root/autodl-tmp/COPE/outputs/v3/v3-20260913T140917Z-r02/postprocess/pueue-18-full.log",
+  "log_sha256": "4c0efd1259850ad8dac3a234a8c400f94e97da94096b687a8fdad3825f231911"
+}

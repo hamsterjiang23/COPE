@@ -1,0 +1,79 @@
+{
+  "version": "v2",
+  "seed": 42,
+  "teacher": {
+    "repo": "Qwen/Qwen3-14B",
+    "revision": "40c069824f4251a91eefaf281ebe4c544efd3e18",
+    "path": "/root/autodl-tmp/models/Qwen3-14B",
+    "hidden_size": 5120,
+    "device": "cuda:0",
+    "frozen": true
+  },
+  "student": {
+    "path": "/root/autodl-tmp/models/Qwen3-1.7B",
+    "hidden_size": 2048,
+    "device": "cuda:1",
+    "frozen": true
+  },
+  "dataset": {
+    "repo": "openai/gsm8k",
+    "revision": "740312add88f781978c0658806c59bc2815b9866",
+    "subset": "main",
+    "split": "train",
+    "path": "/root/autodl-tmp/COPE/data/gsm8k/train.parquet",
+    "train_size": 1024,
+    "holdout_size": 128
+  },
+  "protocol": {
+    "num_slots": 8,
+    "max_width": 2048,
+    "widths": [
+      256,
+      512,
+      1024,
+      2048
+    ],
+    "reducer": "masked_mean",
+    "teacher_hidden_state_index": -1,
+    "projector_hidden_size": 5120,
+    "dtype": "float32"
+  },
+  "training": {
+    "arms": [
+      "correct",
+      "full_only",
+      "constant",
+      "mismatched"
+    ],
+    "microbatch": 2,
+    "gradient_accumulation": 4,
+    "max_steps": 128,
+    "milestone_steps": 32,
+    "interface_lr": 0.001,
+    "weight_decay": 0.0,
+    "max_grad_norm": 1.0,
+    "prompt_max_tokens": 512,
+    "sequence_max_tokens": 1024,
+    "smoke_examples": 16,
+    "smoke_steps": 32,
+    "width_weighting": "uniform"
+  },
+  "generation": {
+    "enable_thinking": false,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "batch_size": 2
+  },
+  "budget": {
+    "seconds": 21600,
+    "evaluation_reserve_seconds": 5400
+  },
+  "server": {
+    "host": "seetacloud-A800-80G",
+    "workspace": "/root/autodl-tmp/COPE",
+    "output_root": "/root/autodl-tmp/COPE/outputs/v2",
+    "pueue_group": "cope-v2"
+  },
+  "training_scope": "interface_only",
+  "evaluation_note": "Reuses v1 holdout for exploratory diagnostics only; not an untouched confirmation set."
+}

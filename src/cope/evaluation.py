@@ -61,6 +61,7 @@ class CorrectionStatistics:
     student_correct: int
     harmed: int
     total: int
+    other_corrected: int = 0
 
     @property
     def correction_rate(self) -> float:
@@ -73,7 +74,11 @@ class CorrectionStatistics:
 
     @property
     def net_accuracy_change(self) -> float:
-        return (self.corrected - self.harmed) / self.total if self.total else 0.0
+        return (
+            (self.corrected + self.other_corrected - self.harmed) / self.total
+            if self.total
+            else 0.0
+        )
 
 
 def correction_statistics(
@@ -96,6 +101,12 @@ def correction_statistics(
         )
     )
     student_wins = sum(student_correct)
+    other_corrected = sum(
+        not teacher and not student and assisted
+        for teacher, student, assisted in zip(
+            teacher_correct, student_correct, assisted_correct, strict=True
+        )
+    )
     harmed = sum(
         student and not assisted
         for student, assisted in zip(student_correct, assisted_correct, strict=True)
@@ -106,4 +117,5 @@ def correction_statistics(
         student_correct=student_wins,
         harmed=harmed,
         total=len(student_correct),
+        other_corrected=other_corrected,
     )

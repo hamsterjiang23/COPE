@@ -109,6 +109,7 @@ class HuggingFaceCausalStudentAdapter(StudentAdapter):
                 "inputs_embeds": token_embeddings,
                 "attention_mask": attention_mask,
                 "labels": labels,
+                "position_ids": (attention_mask.cumsum(-1) - 1).clamp_min(0),
             }
         if prefix_embeddings.ndim != 3:
             raise ValueError("prefix_embeddings must have shape [batch, slots, hidden]")
@@ -135,9 +136,11 @@ class HuggingFaceCausalStudentAdapter(StudentAdapter):
             dtype=labels.dtype,
             device=labels.device,
         )
+        combined_mask = torch.cat([prefix_mask, attention_mask], dim=1)
         return {
             "inputs_embeds": torch.cat([prefix_embeddings, token_embeddings], dim=1),
-            "attention_mask": torch.cat([prefix_mask, attention_mask], dim=1),
+            "attention_mask": combined_mask,
+            "position_ids": (combined_mask.cumsum(-1) - 1).clamp_min(0),
             "labels": torch.cat([ignored_prefix_labels, labels], dim=1),
         }
 
@@ -159,6 +162,8 @@ class HuggingFaceCausalStudentAdapter(StudentAdapter):
     ) -> Any:
         model_inputs = self._prepare_inputs(prefix_embeddings, batch)
         model_inputs.pop("labels")
+        # GenerationMixin must extend positions as new tokens are generated.
+        model_inputs.pop("position_ids")
         generate = getattr(self.model, "generate", None)
         if generate is None:
             raise TypeError("student model must define generate()")

@@ -1,0 +1,276 @@
+{
+  "status": "completed_exploratory",
+  "arms": {
+    "no_latent": {
+      "n": 128,
+      "accuracy": 0.640625,
+      "nll": 0.42277556941537797,
+      "mean_output_tokens": 110.71875,
+      "parse_failure_rate": 0.0,
+      "truncation_rate": 0.0,
+      "mean_online_ms_per_sample": 2415.750007072347,
+      "mean_teacher_prefill_ms_per_sample": 0.0,
+      "mean_interface_ms_per_sample": 0.0,
+      "mean_student_generate_ms_per_sample": 2415.636433266627,
+      "complete": true
+    },
+    "correct": {
+      "n": 128,
+      "accuracy": 0.6875,
+      "nll": 0.41907309135366344,
+      "mean_output_tokens": 126.9296875,
+      "parse_failure_rate": 0.0390625,
+      "truncation_rate": 0.0390625,
+      "mean_online_ms_per_sample": 2977.617069183907,
+      "mean_teacher_prefill_ms_per_sample": 28.163699855213054,
+      "mean_interface_ms_per_sample": 0.40021097811404616,
+      "mean_student_generate_ms_per_sample": 2948.923898744397,
+      "complete": true
+    },
+    "constant": {
+      "n": 128,
+      "accuracy": 0.6953125,
+      "nll": 0.4200412370398373,
+      "mean_output_tokens": 117.2109375,
+      "parse_failure_rate": 0.015625,
+      "truncation_rate": 0.015625,
+      "mean_online_ms_per_sample": 2707.8449715918396,
+      "mean_teacher_prefill_ms_per_sample": 0.005647401849273592,
+      "mean_interface_ms_per_sample": 0.10874485451495275,
+      "mean_student_generate_ms_per_sample": 2707.6093331343145,
+      "complete": true
+    },
+    "mismatched": {
+      "n": 128,
+      "accuracy": 0.734375,
+      "nll": 0.4192700329045217,
+      "mean_output_tokens": 116.28125,
+      "parse_failure_rate": 0.0078125,
+      "truncation_rate": 0.0078125,
+      "mean_online_ms_per_sample": 2826.1731327147572,
+      "mean_teacher_prefill_ms_per_sample": 28.225817935890518,
+      "mean_interface_ms_per_sample": 0.38960100937401876,
+      "mean_student_generate_ms_per_sample": 2797.429544683837,
+      "complete": true
+    },
+    "correct_test_mismatched": {
+      "n": 128,
+      "accuracy": 0.6640625,
+      "nll": 0.4196516002882185,
+      "mean_output_tokens": 126.71875,
+      "parse_failure_rate": 0.03125,
+      "truncation_rate": 0.03125,
+      "mean_online_ms_per_sample": 3098.8393920997623,
+      "mean_teacher_prefill_ms_per_sample": 28.240945321158506,
+      "mean_interface_ms_per_sample": 0.3864745231112465,
+      "mean_student_generate_ms_per_sample": 3070.0866031402256,
+      "complete": true
+    },
+    "raw_student": {
+      "n": 128,
+      "accuracy": 0.078125,
+      "nll": 2.1940506527365167,
+      "mean_output_tokens": 218.2578125,
+      "parse_failure_rate": 0.921875,
+      "truncation_rate": 0.0234375,
+      "mean_online_ms_per_sample": 4254.489744438615,
+      "mean_teacher_prefill_ms_per_sample": 0.0,
+      "mean_interface_ms_per_sample": 0.0,
+      "mean_student_generate_ms_per_sample": 4254.373106195999,
+      "complete": true
+    },
+    "teacher": {
+      "n": 128,
+      "accuracy": 0.8984375,
+      "nll": 1.3417525804824062,
+      "mean_output_tokens": 173.71875,
+      "parse_failure_rate": 0.0625,
+      "truncation_rate": 0.015625,
+      "mean_online_ms_per_sample": 4585.191934929753,
+      "mean_teacher_prefill_ms_per_sample": 0.0,
+      "mean_interface_ms_per_sample": 0.0,
+      "mean_student_generate_ms_per_sample": 4585.0664975369,
+      "complete": true
+    }
+  },
+  "comparisons": {
+    "correct_vs_no_latent": {
+      "n": 128,
+      "corrected": 17,
+      "harmed": 11,
+      "baseline_wrong": 46,
+      "baseline_correct": 82,
+      "correction_rate": 0.3695652173913043,
+      "harm_rate": 0.13414634146341464,
+      "net_accuracy_change": 0.046875,
+      "paired_bootstrap_95": [
+        -0.03125,
+        0.125
+      ]
+    },
+    "constant_vs_no_latent": {
+      "n": 128,
+      "corrected": 19,
+      "harmed": 12,
+      "baseline_wrong": 46,
+      "baseline_correct": 82,
+      "correction_rate": 0.41304347826086957,
+      "harm_rate": 0.14634146341463414,
+      "net_accuracy_change": 0.0546875,
+      "paired_bootstrap_95": [
+        -0.03125,
+        0.140625
+      ]
+    },
+    "mismatched_vs_no_latent": {
+      "n": 128,
+      "corrected": 18,
+      "harmed": 6,
+      "baseline_wrong": 46,
+      "baseline_correct": 82,
+      "correction_rate": 0.391304347826087,
+      "harm_rate": 0.07317073170731707,
+      "net_accuracy_change": 0.09375,
+      "paired_bootstrap_95": [
+        0.0234375,
+        0.1640625
+      ]
+    },
+    "correct_vs_constant": {
+      "n": 128,
+      "corrected": 14,
+      "harmed": 15,
+      "baseline_wrong": 39,
+      "baseline_correct": 89,
+      "correction_rate": 0.358974358974359,
+      "harm_rate": 0.16853932584269662,
+      "net_accuracy_change": -0.0078125,
+      "paired_bootstrap_95": [
+        -0.0859375,
+        0.07050781249999716
+      ]
+    },
+    "correct_vs_mismatched": {
+      "n": 128,
+      "corrected": 9,
+      "harmed": 15,
+      "baseline_wrong": 34,
+      "baseline_correct": 94,
+      "correction_rate": 0.2647058823529412,
+      "harm_rate": 0.1595744680851064,
+      "net_accuracy_change": -0.046875,
+      "paired_bootstrap_95": [
+        -0.1171875,
+        0.03125
+      ]
+    },
+    "test_mismatched_vs_correct": {
+      "n": 128,
+      "corrected": 6,
+      "harmed": 9,
+      "baseline_wrong": 40,
+      "baseline_correct": 88,
+      "correction_rate": 0.15,
+      "harm_rate": 0.10227272727272728,
+      "net_accuracy_change": -0.0234375,
+      "paired_bootstrap_95": [
+        -0.0859375,
+        0.0390625
+      ]
+    }
+  },
+  "common_step": 128,
+  "initial_ability_groups": {
+    "teacher_0_raw_student_0": {
+      "n": 13,
+      "accuracy": {
+        "no_latent": 0.15384615384615385,
+        "correct": 0.38461538461538464,
+        "constant": 0.46153846153846156,
+        "mismatched": 0.38461538461538464,
+        "correct_test_mismatched": 0.23076923076923078,
+        "raw_student": 0.0,
+        "teacher": 0.0
+      }
+    },
+    "teacher_0_raw_student_1": {
+      "n": 0,
+      "accuracy": {
+        "no_latent": null,
+        "correct": null,
+        "constant": null,
+        "mismatched": null,
+        "correct_test_mismatched": null,
+        "raw_student": null,
+        "teacher": null
+      }
+    },
+    "teacher_1_raw_student_0": {
+      "n": 105,
+      "accuracy": {
+        "no_latent": 0.6857142857142857,
+        "correct": 0.7142857142857143,
+        "constant": 0.7047619047619048,
+        "mismatched": 0.7619047619047619,
+        "correct_test_mismatched": 0.6952380952380952,
+        "raw_student": 0.0,
+        "teacher": 1.0
+      }
+    },
+    "teacher_1_raw_student_1": {
+      "n": 10,
+      "accuracy": {
+        "no_latent": 0.8,
+        "correct": 0.8,
+        "constant": 0.9,
+        "mismatched": 0.9,
+        "correct_test_mismatched": 0.9,
+        "raw_student": 1.0,
+        "teacher": 1.0
+      }
+    }
+  },
+  "interpretation": "single_seed_small_holdout_not_confirmatory",
+  "budget_used_seconds": 3280.7689639339224,
+  "teacher_encoding_calls": 1554,
+  "training": {
+    "correct": {
+      "optimizer_steps_this_run": 128,
+      "measured_step_seconds": 81.37915625981987,
+      "matched_at_step": 128
+    },
+    "no_latent": {
+      "optimizer_steps_this_run": 128,
+      "measured_step_seconds": 50.78867088444531,
+      "matched_at_step": 128
+    },
+    "constant": {
+      "optimizer_steps_this_run": 128,
+      "measured_step_seconds": 50.865525763481855,
+      "matched_at_step": 128
+    },
+    "mismatched": {
+      "optimizer_steps_this_run": 128,
+      "measured_step_seconds": 80.539451145567,
+      "matched_at_step": 128
+    }
+  },
+  "peak_allocated_bytes": [
+    30485697024,
+    8984177152
+  ],
+  "payload": {
+    "slots": 8,
+    "width": 2048,
+    "element_bytes": 4,
+    "bytes_per_sample": 65536,
+    "transport": "in_process_cuda_peer_copy",
+    "wire_serialization": "not_used"
+  },
+  "parameter_counts": {
+    "lora": 3211264,
+    "projector": 36717568,
+    "reader": 4196352,
+    "constant": 16384
+  }
+}

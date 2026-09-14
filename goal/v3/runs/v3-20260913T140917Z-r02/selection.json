@@ -1,0 +1,215 @@
+{
+  "candidate": {
+    "id": "middle_embedding",
+    "kind": "embedding",
+    "layer": 20
+  },
+  "screen": {
+    "last_embedding": {
+      "status": "screened",
+      "score": 0.0,
+      "vs_student": {
+        "n": 64,
+        "corrected": 22,
+        "harmed": 4,
+        "baseline_wrong": 49,
+        "baseline_correct": 15,
+        "correction_rate": 0.4489795918367347,
+        "harm_rate": 0.26666666666666666,
+        "net_accuracy_change": 0.28125,
+        "paired_bootstrap_95": [
+          0.140625,
+          0.421875
+        ]
+      },
+      "vs_mismatch": {
+        "n": 64,
+        "corrected": 6,
+        "harmed": 6,
+        "baseline_wrong": 31,
+        "baseline_correct": 33,
+        "correction_rate": 0.1935483870967742,
+        "harm_rate": 0.18181818181818182,
+        "net_accuracy_change": 0.0,
+        "paired_bootstrap_95": [
+          -0.109375,
+          0.109375
+        ]
+      },
+      "accuracy": 0.515625
+    },
+    "last_kv_add": {
+      "status": "screened",
+      "score": -0.03125,
+      "vs_student": {
+        "n": 64,
+        "corrected": 25,
+        "harmed": 2,
+        "baseline_wrong": 49,
+        "baseline_correct": 15,
+        "correction_rate": 0.5102040816326531,
+        "harm_rate": 0.13333333333333333,
+        "net_accuracy_change": 0.359375,
+        "paired_bootstrap_95": [
+          0.21875,
+          0.4847656249999943
+        ]
+      },
+      "vs_mismatch": {
+        "n": 64,
+        "corrected": 3,
+        "harmed": 5,
+        "baseline_wrong": 24,
+        "baseline_correct": 40,
+        "correction_rate": 0.125,
+        "harm_rate": 0.125,
+        "net_accuracy_change": -0.03125,
+        "paired_bootstrap_95": [
+          -0.125,
+          0.046875
+        ]
+      },
+      "accuracy": 0.59375
+    },
+    "last_kv_replace": {
+      "status": "screened",
+      "score": -0.21875,
+      "vs_student": {
+        "n": 64,
+        "corrected": 0,
+        "harmed": 14,
+        "baseline_wrong": 49,
+        "baseline_correct": 15,
+        "correction_rate": 0.0,
+        "harm_rate": 0.9333333333333333,
+        "net_accuracy_change": -0.21875,
+        "paired_bootstrap_95": [
+          -0.328125,
+          -0.125
+        ]
+      },
+      "vs_mismatch": {
+        "n": 64,
+        "corrected": 1,
+        "harmed": 0,
+        "baseline_wrong": 64,
+        "baseline_correct": 0,
+        "correction_rate": 0.015625,
+        "harm_rate": null,
+        "net_accuracy_change": 0.015625,
+        "paired_bootstrap_95": [
+          0.0,
+          0.046875
+        ]
+      },
+      "accuracy": 0.015625
+    },
+    "middle_embedding": {
+      "status": "screened",
+      "score": 0.015625,
+      "vs_student": {
+        "n": 64,
+        "corrected": 20,
+        "harmed": 5,
+        "baseline_wrong": 49,
+        "baseline_correct": 15,
+        "correction_rate": 0.40816326530612246,
+        "harm_rate": 0.3333333333333333,
+        "net_accuracy_change": 0.234375,
+        "paired_bootstrap_95": [
+          0.09375,
+          0.375
+        ]
+      },
+      "vs_mismatch": {
+        "n": 64,
+        "corrected": 5,
+        "harmed": 4,
+        "baseline_wrong": 35,
+        "baseline_correct": 29,
+        "correction_rate": 0.14285714285714285,
+        "harm_rate": 0.13793103448275862,
+        "net_accuracy_change": 0.015625,
+        "paired_bootstrap_95": [
+          -0.078125,
+          0.109375
+        ]
+      },
+      "accuracy": 0.46875
+    },
+    "middle_kv_add": {
+      "status": "screened",
+      "score": -0.0625,
+      "vs_student": {
+        "n": 64,
+        "corrected": 24,
+        "harmed": 6,
+        "baseline_wrong": 49,
+        "baseline_correct": 15,
+        "correction_rate": 0.4897959183673469,
+        "harm_rate": 0.4,
+        "net_accuracy_change": 0.28125,
+        "paired_bootstrap_95": [
+          0.125,
+          0.4375
+        ]
+      },
+      "vs_mismatch": {
+        "n": 64,
+        "corrected": 2,
+        "harmed": 6,
+        "baseline_wrong": 27,
+        "baseline_correct": 37,
+        "correction_rate": 0.07407407407407407,
+        "harm_rate": 0.16216216216216217,
+        "net_accuracy_change": -0.0625,
+        "paired_bootstrap_95": [
+          -0.15625,
+          0.015625
+        ]
+      },
+      "accuracy": 0.515625
+    },
+    "middle_kv_replace": {
+      "status": "screened",
+      "score": -0.234375,
+      "vs_student": {
+        "n": 64,
+        "corrected": 0,
+        "harmed": 15,
+        "baseline_wrong": 49,
+        "baseline_correct": 15,
+        "correction_rate": 0.0,
+        "harm_rate": 1.0,
+        "net_accuracy_change": -0.234375,
+        "paired_bootstrap_95": [
+          -0.34375,
+          -0.140625
+        ]
+      },
+      "vs_mismatch": {
+        "n": 64,
+        "corrected": 0,
+        "harmed": 0,
+        "baseline_wrong": 64,
+        "baseline_correct": 0,
+        "correction_rate": 0.0,
+        "harm_rate": null,
+        "net_accuracy_change": 0.0,
+        "paired_bootstrap_95": [
+          0.0,
+          0.0
+        ]
+      },
+      "accuracy": 0.0
+    }
+  },
+  "rule": {
+    "score": "min(dev_correct_accuracy - dev_student_accuracy, dev_correct_accuracy - dev_test_mismatch_accuracy)",
+    "eligible": "learning probe NLL decreased AND selection score > 0",
+    "tie_break": "candidate id ascending",
+    "max_selected": 1,
+    "confirmation": "selected correct vs student/constant/trained mismatch/inference mismatch; every paired 95% lower bound > 0",
+    "qualification": "single seed promising only, requires replication"
+  }
+}
